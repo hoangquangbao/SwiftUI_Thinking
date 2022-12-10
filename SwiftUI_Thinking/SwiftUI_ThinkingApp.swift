@@ -9,9 +9,12 @@ import SwiftUI
 
 @main
 struct SwiftUI_ThinkingApp: App {
+    
+    static var userdata: UserDataProtocol = UserDataService()
+
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            ArrayBootcamp(userdata: SwiftUI_ThinkingApp.userdata)
         }
     }
 }
