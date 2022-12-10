@@ -9,7 +9,7 @@ import SwiftUI
 
 struct UserModel: Identifiable {
     var id: String = UUID().uuidString
-    var name: String
+    var name: String?
     var point: Int
     var isVeryfield: Bool
 }
@@ -29,10 +29,10 @@ class UserDataService: UserDataProtocol {
         let user4 = UserModel(name: "Tuy", point: 17, isVeryfield: true)
         let user5 = UserModel(name: "Tren", point: 24, isVeryfield: false)
         let user6 = UserModel(name: "Bao", point: 33, isVeryfield: true)
-        let user7 = UserModel(name: "Linda", point: 9, isVeryfield: true)
-        let user8 = UserModel(name: "Tony", point: 12, isVeryfield: false)
+        let user7 = UserModel(name: nil, point: 9, isVeryfield: true)
+        let user8 = UserModel(name: nil, point: 12, isVeryfield: false)
         let user9 = UserModel(name: "Jame", point: 56, isVeryfield: false)
-        let user10 = UserModel(name: "Peter", point: 77, isVeryfield: true)
+        let user10 = UserModel(name: nil, point: 77, isVeryfield: true)
         
         dataArray.append(contentsOf: [
             user1, user2, user3, user4, user5, user6, user7, user8, user9, user10
@@ -46,6 +46,7 @@ class ArrayBootcampViewModel: ObservableObject {
     
     @Published var dataArray: [UserModel] = []
     @Published var filteredArray: [UserModel] = []
+    @Published var mappedArray: [String] = []
     var userdata: UserDataProtocol
     
     init(userdata: UserDataProtocol) {
@@ -58,17 +59,18 @@ class ArrayBootcampViewModel: ObservableObject {
         dataArray.append(contentsOf: userdata.initData())
     }
     
-    //map
     func updateFilteredArray() {
         
-        // sort
-//        filteredArray = dataArray.sorted(by: { (u1, u2) in u1.point > u2.point })
-//        filteredArray = dataArray.sorted(by: { $0.point > $1.point })
+        //map
+//        mappedArray = dataArray.map({ $0.name })
         
-        // filter
-//        filteredArray = dataArray.filter({ $0.point > 30 })
-//        filteredArray = dataArray.filter({ $0.isVeryfield })
-        filteredArray = dataArray.filter({ $0.name.contains("u") })
+        ///compacMap return option value, map is not so compactMap is better for UI
+//        mappedArray = dataArray.compactMap({ $0.name })
+        
+        mappedArray = dataArray
+            .sorted(by: { $0.point > $1.point })
+            .filter({ $0.isVeryfield })
+            .compactMap({ $0.name })
     }
 }
 
@@ -83,24 +85,14 @@ struct ArrayBootcamp: View {
     var body: some View {
         ScrollView {
             VStack {
-                ForEach(viewModel.filteredArray) { user in
-                    VStack(alignment: .leading, spacing: 10) {
-                        Text(user.name)
-                            .font(.headline)
-                        
-                        HStack {
-                            Text("Point: \(user.point)")
-                            Spacer()
-                            if user.isVeryfield {
-                                Text("🌽")
-                            }
-                        }
-                    }
-                    .padding(10)
-                    .foregroundColor(.white)
-                    .background(Color.blue)
-                    .cornerRadius(10)
-                    .padding(.horizontal)
+                ForEach(viewModel.mappedArray, id: \.self) { name in
+                    Text(name)
+                        .font(.headline)
+                        .padding(10)
+                        .foregroundColor(.white)
+                        .background(Color.blue)
+                        .cornerRadius(10)
+                        .padding(.horizontal)
                 }
             }
         }
