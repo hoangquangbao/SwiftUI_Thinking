@@ -45,15 +45,30 @@ class UserDataService: UserDataProtocol {
 class ArrayBootcampViewModel: ObservableObject {
     
     @Published var dataArray: [UserModel] = []
+    @Published var filteredArray: [UserModel] = []
     var userdata: UserDataProtocol
     
     init(userdata: UserDataProtocol) {
         self.userdata = userdata
         getData()
+        updateFilteredArray()
     }
     
     func getData() {
         dataArray.append(contentsOf: userdata.initData())
+    }
+    
+    //map
+    func updateFilteredArray() {
+        
+        // sort
+//        filteredArray = dataArray.sorted(by: { (u1, u2) in u1.point > u2.point })
+//        filteredArray = dataArray.sorted(by: { $0.point > $1.point })
+        
+        // filter
+//        filteredArray = dataArray.filter({ $0.point > 30 })
+//        filteredArray = dataArray.filter({ $0.isVeryfield })
+        filteredArray = dataArray.filter({ $0.name.contains("u") })
     }
 }
 
@@ -68,7 +83,7 @@ struct ArrayBootcamp: View {
     var body: some View {
         ScrollView {
             VStack {
-                ForEach(viewModel.dataArray) { user in
+                ForEach(viewModel.filteredArray) { user in
                     VStack(alignment: .leading, spacing: 10) {
                         Text(user.name)
                             .font(.headline)
