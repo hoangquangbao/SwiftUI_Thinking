@@ -54,9 +54,10 @@ class CoreDataBootcampViewModel: ObservableObject {
         getEmployee()
     }
     
+    //MARK: - ADD
     func addBusiness() {
         let newBusiness = BusinessEntity(context: manager.context)
-        newBusiness.name = "Orange"
+        newBusiness.name = "Tesla"
         
         //add existing departments to new business
         //newBusiness.deparments = []
@@ -75,8 +76,8 @@ class CoreDataBootcampViewModel: ObservableObject {
     
     func addDepartment() {
         let newDepartment = DepartmentEntity(context: manager.context)
-        newDepartment.name = "Software"
-//        newDepartment.businesses = [businesses[0]]
+        newDepartment.name = "Finance"
+        newDepartment.businesses = [businesses[0]]
         newDepartment.addToEmployees(employeees[4])
         
         save()
@@ -84,37 +85,39 @@ class CoreDataBootcampViewModel: ObservableObject {
     
     func addEmployee() {
         let newEmployee = EmployeeEntity(context: manager.context)
-        newEmployee.name = "Emi"
-        newEmployee.age = 22
+        newEmployee.name = "Huy"
+        newEmployee.age = 40
         newEmployee.dateJoined = Date()
 //        newEmployee.businesses = businesses[0]
 //        newEmployee.departments = departments[2]
-        
         save()
     }
     
-    func updateBusiness() {
-        let existingBusiness = businesses[1]
-        existingBusiness.addToDepartments(departments[2])
-        save()
-    }
-    
+    //MARK: - SAVE
     func save() {
         businesses.removeAll()
         departments.removeAll()
-        employeees.removeAll()
+//        employeees.removeAll()
         
         //Phải có deadline nó mới đồng bộ realtime, chưa hiểu vì sao???
         DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
             self.manager.save()
             self.getBusiness()
             self.getDepartment()
-            self.getEmployee()
+//            self.getEmployee()
         }
     }
     
+    //MARK: - GET
     func getBusiness() {
         let request = NSFetchRequest<BusinessEntity>(entityName: "BusinessEntity")
+        
+//        let sort = NSSortDescriptor(keyPath: \BusinessEntity.name, ascending: false)
+//        request.sortDescriptors = [sort]
+//
+//        let filter = NSPredicate(format: "name == %@", "Orange")
+//        request.predicate = filter
+        
         do {
             businesses = try manager.context.fetch(request)
         } catch {
@@ -139,6 +142,58 @@ class CoreDataBootcampViewModel: ObservableObject {
             print("Error: \(error.localizedDescription)")
         }
     }
+    
+    func getEmployee(forBusiness business: BusinessEntity) {
+        let request = NSFetchRequest<EmployeeEntity>(entityName: "EmployeeEntity")
+        
+        let filter = NSPredicate(format: "business == %@", business)
+        request.predicate = filter
+        
+        do {
+            employeees = try manager.context.fetch(request)
+        } catch {
+            print("Error: \(error.localizedDescription)")
+        }
+    }
+    
+    //MARK: - UPDATE
+    func updateBusiness() {
+        let existingBusiness = businesses[0]
+//        existingBusiness.addToDepartments(departments[0])
+        existingBusiness.addToEmployees(employeees[4])
+        save()
+    }
+    
+    func updateDepartment() {
+        let existingDepartment = departments[0]
+        existingDepartment.addToEmployees(employeees[4])
+        save()
+    }
+    
+    func updateEmployee() {
+        let existingEmployee = employeees[5]
+        existingEmployee.businesses = businesses[1]
+        save()
+    }
+    
+    //MARK: - DELETE
+    func deleteBusiness() {
+        let business = businesses[0]
+        manager.context.delete(business)
+        save()
+    }
+    
+    func deleteDepartment() {
+        let department = departments[0]
+        manager.context.delete(department)
+        save()
+    }
+    
+    func deleteEmployee() {
+        let employee = employeees[0]
+        manager.context.delete(employee)
+        save()
+    }
 }
 
 struct CoreDataBootcamp: View {
@@ -153,7 +208,17 @@ struct CoreDataBootcamp: View {
 //                        vm.addBusiness()
 //                        vm.addDepartment()
 //                        vm.addEmployee()
-                        vm.updateBusiness()
+                        
+//                        vm.updateBusiness()
+//                        vm.updateDepartment()
+//                        vm.updateEmployee()
+                        
+//                        vm.deleteBusiness()
+//                        vm.deleteDepartment()
+//                        vm.deleteEmployee()
+                        
+                        //Lỗi này chưa solve được
+//                        vm.getEmployee(forBusiness: vm.businesses[0])
                     } label: {
                         Text("Perform Action")
                             .foregroundColor(.white)
