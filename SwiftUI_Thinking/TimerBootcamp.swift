@@ -9,7 +9,7 @@ import SwiftUI
 
 struct TimerBootcamp: View {
     
-    let timer = Timer.publish(every: 0.3, on: .main, in: .common).autoconnect()
+    let timer = Timer.publish(every: 3, on: .main, in: .common).autoconnect()
     
     //MARK: - Current time
 //    @State var currentDate = Date()
@@ -48,16 +48,25 @@ struct TimerBootcamp: View {
                 endRadius: 350)
             .edgesIgnoringSafeArea(.all)
             
-            HStack(spacing: 15) {
-                Circle()
-                    .offset(y: count == 1 ? -20 : 0)
-                Circle()
-                    .offset(y: count == 2 ? -20 : 0)
-                Circle()
-                    .offset(y: count == 3 ? -20 : 0)
+            TabView(selection: $count) {
+                Rectangle()
+                    .foregroundColor(.red)
+                    .tag(1)
+                Rectangle()
+                    .foregroundColor(.orange)
+                    .tag(2)
+                Rectangle()
+                    .foregroundColor(.yellow)
+                    .tag(3)
+                Rectangle()
+                    .foregroundColor(.blue)
+                    .tag(4)
+                Rectangle()
+                    .foregroundColor(.green)
+                    .tag(5)
             }
-            .foregroundColor(.white)
-            .frame(width: 150)
+            .frame(height: 200)
+            .tabViewStyle(PageTabViewStyle())
         }
         .onReceive(timer) { _ in
             withAnimation {
@@ -66,7 +75,7 @@ struct TimerBootcamp: View {
 //                } else {
 //                    count += 1
 //                }
-                count = count == 3 ? 0 : count + 1
+                count = count == 5 ? 1 : count + 1
             }
         }
     }
