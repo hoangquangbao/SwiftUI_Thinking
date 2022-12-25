@@ -10,13 +10,19 @@ import SwiftUI
 struct TimerBootcamp: View {
     
     let timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
-    @State var currentDate = Date()
-    var dateFormatter: DateFormatter {
-        let formatter = DateFormatter()
+    
+    //MARK: - Current time
+//    @State var currentDate = Date()
+//    var dateFormatter: DateFormatter {
+//        let formatter = DateFormatter()
 //        formatter.dateStyle = .medium
-        formatter.timeStyle = .medium
-        return formatter
-    }
+//        formatter.timeStyle = .medium
+//        return formatter
+//    }
+    
+    //MARK: - Countdown
+    @State var count: Int = 10
+    @State var finishedText: String? = nil
     
     var body: some View {
         ZStack {
@@ -27,14 +33,18 @@ struct TimerBootcamp: View {
                 endRadius: 350)
             .edgesIgnoringSafeArea(.all)
             
-            Text(dateFormatter.string(from: currentDate))
+            Text(finishedText ?? "\(count)")
                 .font(.system(size: 50, weight: .bold, design: .rounded))
                 .foregroundColor(.white)
                 .lineLimit(1)
                 .minimumScaleFactor(0.1)
         }
-        .onReceive(timer) { value in
-            currentDate = value
+        .onReceive(timer) { _ in
+            if count < 1 {
+                finishedText = "Happy New Year 2023 !!!"
+            } else {
+                count -= 1
+            }
         }
     }
 }
