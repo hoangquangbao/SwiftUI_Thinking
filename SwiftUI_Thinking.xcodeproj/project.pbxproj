@@ -7,6 +7,13 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		066890AB29599FC500B42D94 /* DownloadImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 066890AA29599FC500B42D94 /* DownloadImageView.swift */; };
+		066890AD2959A00E00B42D94 /* PhotoModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 066890AC2959A00E00B42D94 /* PhotoModel.swift */; };
+		066890AF2959A07300B42D94 /* DownloadImageViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 066890AE2959A07300B42D94 /* DownloadImageViewModel.swift */; };
+		066890B32959AA0E00B42D94 /* PhotoModelDataService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 066890B22959AA0E00B42D94 /* PhotoModelDataService.swift */; };
+		068B17E6295AE9BB00A94810 /* DownloadingImagesRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 068B17E5295AE9BB00A94810 /* DownloadingImagesRow.swift */; };
+		068B17E8295AEC6100A94810 /* DownloadingImagesBootcampView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 068B17E7295AEC6100A94810 /* DownloadingImagesBootcampView.swift */; };
+		068B17EA295AF37C00A94810 /* ImageLoadingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 068B17E9295AF37C00A94810 /* ImageLoadingViewModel.swift */; };
 		06A9ED7329335C980060FB24 /* SwiftUI_ThinkingApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06A9ED7229335C980060FB24 /* SwiftUI_ThinkingApp.swift */; };
 		06A9ED7529335C980060FB24 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06A9ED7429335C980060FB24 /* ContentView.swift */; };
 		06A9ED7729335C9A0060FB24 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 06A9ED7629335C9A0060FB24 /* Assets.xcassets */; };
@@ -14,6 +21,13 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		066890AA29599FC500B42D94 /* DownloadImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DownloadImageView.swift; sourceTree = "<group>"; };
+		066890AC2959A00E00B42D94 /* PhotoModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoModel.swift; sourceTree = "<group>"; };
+		066890AE2959A07300B42D94 /* DownloadImageViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DownloadImageViewModel.swift; sourceTree = "<group>"; };
+		066890B22959AA0E00B42D94 /* PhotoModelDataService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoModelDataService.swift; sourceTree = "<group>"; };
+		068B17E5295AE9BB00A94810 /* DownloadingImagesRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DownloadingImagesRow.swift; sourceTree = "<group>"; };
+		068B17E7295AEC6100A94810 /* DownloadingImagesBootcampView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DownloadingImagesBootcampView.swift; sourceTree = "<group>"; };
+		068B17E9295AF37C00A94810 /* ImageLoadingViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageLoadingViewModel.swift; sourceTree = "<group>"; };
 		06A9ED6F29335C980060FB24 /* SwiftUI_Thinking.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SwiftUI_Thinking.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		06A9ED7229335C980060FB24 /* SwiftUI_ThinkingApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftUI_ThinkingApp.swift; sourceTree = "<group>"; };
 		06A9ED7429335C980060FB24 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -32,6 +46,41 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		066890A629599F6E00B42D94 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				066890AA29599FC500B42D94 /* DownloadImageView.swift */,
+				068B17E5295AE9BB00A94810 /* DownloadingImagesRow.swift */,
+				068B17E7295AEC6100A94810 /* DownloadingImagesBootcampView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		066890A729599F7B00B42D94 /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
+				066890AE2959A07300B42D94 /* DownloadImageViewModel.swift */,
+				068B17E9295AF37C00A94810 /* ImageLoadingViewModel.swift */,
+			);
+			path = ViewModels;
+			sourceTree = "<group>";
+		};
+		066890A829599F8400B42D94 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				066890AC2959A00E00B42D94 /* PhotoModel.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		066890A929599F9300B42D94 /* Ultilities */ = {
+			isa = PBXGroup;
+			children = (
+				066890B22959AA0E00B42D94 /* PhotoModelDataService.swift */,
+			);
+			path = Ultilities;
+			sourceTree = "<group>";
+		};
 		06A9ED6629335C980060FB24 = {
 			isa = PBXGroup;
 			children = (
@@ -51,6 +100,10 @@
 		06A9ED7129335C980060FB24 /* SwiftUI_Thinking */ = {
 			isa = PBXGroup;
 			children = (
+				066890A929599F9300B42D94 /* Ultilities */,
+				066890A829599F8400B42D94 /* Models */,
+				066890A729599F7B00B42D94 /* ViewModels */,
+				066890A629599F6E00B42D94 /* Views */,
 				06A9ED7229335C980060FB24 /* SwiftUI_ThinkingApp.swift */,
 				06A9ED7429335C980060FB24 /* ContentView.swift */,
 				06A9ED7629335C9A0060FB24 /* Assets.xcassets */,
@@ -137,8 +190,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				068B17EA295AF37C00A94810 /* ImageLoadingViewModel.swift in Sources */,
+				066890AF2959A07300B42D94 /* DownloadImageViewModel.swift in Sources */,
 				06A9ED7529335C980060FB24 /* ContentView.swift in Sources */,
+				068B17E8295AEC6100A94810 /* DownloadingImagesBootcampView.swift in Sources */,
+				066890B32959AA0E00B42D94 /* PhotoModelDataService.swift in Sources */,
+				068B17E6295AE9BB00A94810 /* DownloadingImagesRow.swift in Sources */,
+				066890AB29599FC500B42D94 /* DownloadImageView.swift in Sources */,
 				06A9ED7329335C980060FB24 /* SwiftUI_ThinkingApp.swift in Sources */,
+				066890AD2959A00E00B42D94 /* PhotoModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
