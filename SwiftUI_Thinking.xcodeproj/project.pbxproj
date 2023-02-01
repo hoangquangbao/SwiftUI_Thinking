@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		06642F6C295C2A000085BFDC /* PhotoModelCacheManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06642F6B295C2A000085BFDC /* PhotoModelCacheManager.swift */; };
+		06642F6E295C2BAB0085BFDC /* PhotoModelFileManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06642F6D295C2BAB0085BFDC /* PhotoModelFileManager.swift */; };
 		066890AB29599FC500B42D94 /* DownloadImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 066890AA29599FC500B42D94 /* DownloadImageView.swift */; };
 		066890AD2959A00E00B42D94 /* PhotoModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 066890AC2959A00E00B42D94 /* PhotoModel.swift */; };
 		066890AF2959A07300B42D94 /* DownloadImageViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 066890AE2959A07300B42D94 /* DownloadImageViewModel.swift */; };
@@ -21,6 +23,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		06642F6B295C2A000085BFDC /* PhotoModelCacheManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoModelCacheManager.swift; sourceTree = "<group>"; };
+		06642F6D295C2BAB0085BFDC /* PhotoModelFileManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoModelFileManager.swift; sourceTree = "<group>"; };
 		066890AA29599FC500B42D94 /* DownloadImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DownloadImageView.swift; sourceTree = "<group>"; };
 		066890AC2959A00E00B42D94 /* PhotoModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoModel.swift; sourceTree = "<group>"; };
 		066890AE2959A07300B42D94 /* DownloadImageViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DownloadImageViewModel.swift; sourceTree = "<group>"; };
@@ -69,6 +73,8 @@
 			isa = PBXGroup;
 			children = (
 				066890AC2959A00E00B42D94 /* PhotoModel.swift */,
+				06642F6B295C2A000085BFDC /* PhotoModelCacheManager.swift */,
+				06642F6D295C2BAB0085BFDC /* PhotoModelFileManager.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -191,12 +197,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				068B17EA295AF37C00A94810 /* ImageLoadingViewModel.swift in Sources */,
+				06642F6E295C2BAB0085BFDC /* PhotoModelFileManager.swift in Sources */,
 				066890AF2959A07300B42D94 /* DownloadImageViewModel.swift in Sources */,
 				06A9ED7529335C980060FB24 /* ContentView.swift in Sources */,
 				068B17E8295AEC6100A94810 /* DownloadingImagesBootcampView.swift in Sources */,
 				066890B32959AA0E00B42D94 /* PhotoModelDataService.swift in Sources */,
 				068B17E6295AE9BB00A94810 /* DownloadingImagesRow.swift in Sources */,
 				066890AB29599FC500B42D94 /* DownloadImageView.swift in Sources */,
+				06642F6C295C2A000085BFDC /* PhotoModelCacheManager.swift in Sources */,
 				06A9ED7329335C980060FB24 /* SwiftUI_ThinkingApp.swift in Sources */,
 				066890AD2959A00E00B42D94 /* PhotoModel.swift in Sources */,
 			);

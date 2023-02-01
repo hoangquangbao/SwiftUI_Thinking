@@ -16,6 +16,8 @@ struct DownloadingImagesBootcampView: View {
             List {
                 ForEach(vm.dataArray) { data in
                     DownloadingImagesRow(data: data)
+                    //Note: Data alway download again when it present in View. So we need a solution to save downloaded data and show it without download again.
+                    
                 }
             }
             .listStyle(.grouped)

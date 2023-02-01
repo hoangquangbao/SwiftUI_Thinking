@@ -13,7 +13,7 @@ struct DownloadingImagesRow: View {
     
     var body: some View {
         HStack {
-            DownloadImageView(url: data.url)
+            DownloadImageView(url: data.url, key: "\(data.id)")
                 .frame(width: 60, height: 60)
             
             VStack(alignment: .leading) {
