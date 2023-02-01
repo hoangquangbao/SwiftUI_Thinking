@@ -23,14 +23,23 @@ class PostOneViewModel: ObservableObject {
         downloadData(url: url) { data in
             if let data = data {
                 
-//                guard let newData = try? JSONDecoder().decode(PostOneModel.self, from: data) else {
-                guard let newDatas = try? JSONDecoder().decode([PostOneModel].self, from: data) else {
-                    print("Decode data faild")
-                    return
-                }
-                DispatchQueue.main.async {
-//                    self.posts.append(newData)
-                    self.posts = newDatas
+////                guard let newData = try? JSONDecoder().decode(PostOneModel.self, from: data) else {
+//                guard let newDatas = try? JSONDecoder().decode([PostOneModel].self, from: data) else {
+//                    print("Decode data faild")
+//                    return
+//                }
+//                DispatchQueue.main.async {
+////                    self.posts.append(newData)
+//                    self.posts = newDatas
+//                }
+                
+                do {
+                    let newDatas = try JSONDecoder().decode([PostOneModel].self, from: data)
+                    DispatchQueue.main.async {
+                        self.posts = newDatas
+                    }
+                } catch {
+                    print(error)
                 }
             } else {
                 print("No data!")
