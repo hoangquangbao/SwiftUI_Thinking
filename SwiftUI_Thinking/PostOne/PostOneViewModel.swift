@@ -17,20 +17,20 @@ class PostOneViewModel: ObservableObject {
     
     func getPost() {
         
-        guard let url = URL(string: "https://jsonplaceholder.typicode.com/posts/1") else { return }
-//        guard let url = URL(string: "https://jsonplaceholder.typicode.com/posts") else { return }
+//        guard let url = URL(string: "https://jsonplaceholder.typicode.com/posts/1") else { return }
+        guard let url = URL(string: "https://jsonplaceholder.typicode.com/posts") else { return }
         
         downloadData(url: url) { data in
             if let data = data {
                 
-                guard let newData = try? JSONDecoder().decode(PostOneModel.self, from: data) else {
-//                guard let newDatas = try? JSONDecoder().decode([PostOneModel].self, from: data) else {
+//                guard let newData = try? JSONDecoder().decode(PostOneModel.self, from: data) else {
+                guard let newDatas = try? JSONDecoder().decode([PostOneModel].self, from: data) else {
                     print("Decode data faild")
                     return
                 }
                 DispatchQueue.main.async {
-                    self.posts.append(newData)
-//                    self.posts = newDatas
+//                    self.posts.append(newData)
+                    self.posts = newDatas
                 }
             } else {
                 print("No data!")
