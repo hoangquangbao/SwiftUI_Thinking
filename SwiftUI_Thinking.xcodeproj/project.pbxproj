@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		067B25B4298B5A4000AEC874 /* BackgroundThreadView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 067B25B3298B5A4000AEC874 /* BackgroundThreadView.swift */; };
+		067B25B6298B5A4B00AEC874 /* BackgroundThreadViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 067B25B5298B5A4B00AEC874 /* BackgroundThreadViewModel.swift */; };
 		06A9ED7329335C980060FB24 /* SwiftUI_ThinkingApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06A9ED7229335C980060FB24 /* SwiftUI_ThinkingApp.swift */; };
 		06A9ED7529335C980060FB24 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06A9ED7429335C980060FB24 /* ContentView.swift */; };
 		06A9ED7729335C9A0060FB24 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 06A9ED7629335C9A0060FB24 /* Assets.xcassets */; };
@@ -14,6 +16,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		067B25B3298B5A4000AEC874 /* BackgroundThreadView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackgroundThreadView.swift; sourceTree = "<group>"; };
+		067B25B5298B5A4B00AEC874 /* BackgroundThreadViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackgroundThreadViewModel.swift; sourceTree = "<group>"; };
 		06A9ED6F29335C980060FB24 /* SwiftUI_Thinking.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SwiftUI_Thinking.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		06A9ED7229335C980060FB24 /* SwiftUI_ThinkingApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftUI_ThinkingApp.swift; sourceTree = "<group>"; };
 		06A9ED7429335C980060FB24 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -52,6 +56,8 @@
 			isa = PBXGroup;
 			children = (
 				06A9ED7229335C980060FB24 /* SwiftUI_ThinkingApp.swift */,
+				067B25B3298B5A4000AEC874 /* BackgroundThreadView.swift */,
+				067B25B5298B5A4B00AEC874 /* BackgroundThreadViewModel.swift */,
 				06A9ED7429335C980060FB24 /* ContentView.swift */,
 				06A9ED7629335C9A0060FB24 /* Assets.xcassets */,
 				06A9ED7829335C9A0060FB24 /* Preview Content */,
@@ -138,6 +144,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				06A9ED7529335C980060FB24 /* ContentView.swift in Sources */,
+				067B25B4298B5A4000AEC874 /* BackgroundThreadView.swift in Sources */,
+				067B25B6298B5A4B00AEC874 /* BackgroundThreadViewModel.swift in Sources */,
 				06A9ED7329335C980060FB24 /* SwiftUI_ThinkingApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
