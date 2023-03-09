@@ -30,6 +30,14 @@ struct FileManagerView: View {
                         .fontWeight(.bold)
                         .font(.system(size: 15))
                 }
+                
+                Button {
+                    vm.deleteImage()
+                } label: {
+                    Text("Delete")
+                        .fontWeight(.bold)
+                        .font(.system(size: 15))
+                }
 
                 Spacer()
             }

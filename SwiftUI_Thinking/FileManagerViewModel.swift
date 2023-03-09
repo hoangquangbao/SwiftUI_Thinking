@@ -47,6 +47,21 @@ class LocalFileManager {
         return UIImage(contentsOfFile: path)
     }
     
+    func deleteImage(name: String) {
+        guard let path = getPathForImage(name: name)?.path(),
+              FileManager.default.fileExists(atPath: path) else {
+            print("Error getting patch.")
+            return
+        }
+        
+        do {
+            try FileManager.default.removeItem(atPath: path)
+            print("Sucessfully deteted.")
+        } catch {
+            print("Error deleting image: \(error)")
+        }
+    }
+    
     func getPathForImage(name: String) -> URL? {
         guard
             let directory = FileManager
@@ -61,7 +76,6 @@ class LocalFileManager {
             print("Error create path!")
             return nil
         }
-        
         return directory
     }
 }
@@ -74,15 +88,23 @@ class FileManagerViewModel: ObservableObject {
     
     init() {
 //        getImageFromAssetFolder()
-        image = manager.getImage(name: imageName)
+        getImageFromFileManager()
     }
     
     func getImageFromAssetFolder() {
         image = UIImage(named: imageName)
     }
     
+    func getImageFromFileManager() {
+        image = manager.getImage(name: imageName)
+    }
+    
     func saveImage() {
         guard let image = image else { return }
         manager.saveImage(image: image, name: imageName)
+    }
+    
+    func deleteImage() {
+        manager.deleteImage(name: imageName)
     }
 }
