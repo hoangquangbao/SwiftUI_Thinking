@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		068CB25A2A08E0E6003E4858 /* CustomShapesBootcamp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 068CB2592A08E0E6003E4858 /* CustomShapesBootcamp.swift */; };
+		068CB25C2A08EAC8003E4858 /* CustomCurvesBootcamp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 068CB25B2A08EAC8003E4858 /* CustomCurvesBootcamp.swift */; };
 		06A9ED7329335C980060FB24 /* SwiftUI_ThinkingApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06A9ED7229335C980060FB24 /* SwiftUI_ThinkingApp.swift */; };
 		06A9ED7529335C980060FB24 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06A9ED7429335C980060FB24 /* ContentView.swift */; };
 		06A9ED7729335C9A0060FB24 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 06A9ED7629335C9A0060FB24 /* Assets.xcassets */; };
@@ -16,6 +17,7 @@
 
 /* Begin PBXFileReference section */
 		068CB2592A08E0E6003E4858 /* CustomShapesBootcamp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomShapesBootcamp.swift; sourceTree = "<group>"; };
+		068CB25B2A08EAC8003E4858 /* CustomCurvesBootcamp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomCurvesBootcamp.swift; sourceTree = "<group>"; };
 		06A9ED6F29335C980060FB24 /* SwiftUI_Thinking.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SwiftUI_Thinking.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		06A9ED7229335C980060FB24 /* SwiftUI_ThinkingApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftUI_ThinkingApp.swift; sourceTree = "<group>"; };
 		06A9ED7429335C980060FB24 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -58,6 +60,7 @@
 				06A9ED7629335C9A0060FB24 /* Assets.xcassets */,
 				06A9ED7829335C9A0060FB24 /* Preview Content */,
 				068CB2592A08E0E6003E4858 /* CustomShapesBootcamp.swift */,
+				068CB25B2A08EAC8003E4858 /* CustomCurvesBootcamp.swift */,
 			);
 			path = SwiftUI_Thinking;
 			sourceTree = "<group>";
@@ -141,6 +144,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				06A9ED7529335C980060FB24 /* ContentView.swift in Sources */,
+				068CB25C2A08EAC8003E4858 /* CustomCurvesBootcamp.swift in Sources */,
 				06A9ED7329335C980060FB24 /* SwiftUI_ThinkingApp.swift in Sources */,
 				068CB25A2A08E0E6003E4858 /* CustomShapesBootcamp.swift in Sources */,
 			);
