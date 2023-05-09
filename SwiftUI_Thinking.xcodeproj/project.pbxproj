@@ -15,6 +15,7 @@
 		06A9ED7A29335C9A0060FB24 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 06A9ED7929335C9A0060FB24 /* Preview Assets.xcassets */; };
 		06AC06922A09D6070001712F /* AnimateableData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06AC06912A09D6070001712F /* AnimateableData.swift */; };
 		06AC06942A09E45A0001712F /* Pacman.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06AC06932A09E45A0001712F /* Pacman.swift */; };
+		06AC06982A09F9A80001712F /* ClockView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06AC06972A09F9A80001712F /* ClockView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -27,6 +28,7 @@
 		06A9ED7929335C9A0060FB24 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		06AC06912A09D6070001712F /* AnimateableData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimateableData.swift; sourceTree = "<group>"; };
 		06AC06932A09E45A0001712F /* Pacman.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Pacman.swift; sourceTree = "<group>"; };
+		06AC06972A09F9A80001712F /* ClockView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClockView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -67,6 +69,7 @@
 				068CB25B2A08EAC8003E4858 /* CustomCurvesBootcamp.swift */,
 				06AC06912A09D6070001712F /* AnimateableData.swift */,
 				06AC06932A09E45A0001712F /* Pacman.swift */,
+				06AC06972A09F9A80001712F /* ClockView.swift */,
 			);
 			path = SwiftUI_Thinking;
 			sourceTree = "<group>";
@@ -149,6 +152,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				06AC06982A09F9A80001712F /* ClockView.swift in Sources */,
 				06A9ED7529335C980060FB24 /* ContentView.swift in Sources */,
 				068CB25C2A08EAC8003E4858 /* CustomCurvesBootcamp.swift in Sources */,
 				06A9ED7329335C980060FB24 /* SwiftUI_ThinkingApp.swift in Sources */,
