@@ -23,17 +23,7 @@ struct BackgroundClockPath: Shape {
 struct ClockPath: Shape {
 
     var value: Double = 10
-    var angle: Double
-    
-    init(angle: Double = 0) {
-        self.angle = angle
-    }
-    
-    var animatableData: Double {
-        get { value }
-        set { value = newValue }
-    }
-    
+
     func path(in rect: CGRect) -> Path {
         Path { path in
             path.move(to: CGPoint(x: rect.midX - value, y: rect.midY))
@@ -69,9 +59,8 @@ struct ClockView: View {
                 .rotationEffect(.degrees(active ? 360 : 0))
                 .animation(Animation.linear(duration: 3.5).repeatForever(autoreverses: false), value: active)
 
-            
             ClockPath()
-                .fill(LinearGradient(colors: [.green],
+                .fill(LinearGradient(colors: [.yellow],
                                      startPoint: .top,
                                      endPoint: .bottom))
                 .frame(width: 100, height: 250)
