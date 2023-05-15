@@ -7,34 +7,79 @@
 
 import SwiftUI
 
+struct RotateViewModifier: ViewModifier {
+    
+    var degrees: Double
+    
+    func body(content: Content) -> some View {
+        content
+            .rotationEffect(Angle(degrees: degrees))
+//            .offset(x: degrees != 0 ? 0 : 150,
+//                    y: degrees != 0 ? 0 : 100)
+            .offset(x: degrees != 0 ? UIScreen.main.bounds.width : 0,
+                    y: degrees != 0 ? UIScreen.main.bounds.height : 0)
+    }
+}
+
+extension AnyTransition {
+    static var rotating: AnyTransition {
+        return AnyTransition.modifier(active: RotateViewModifier(degrees: 180),
+                                      identity: RotateViewModifier(degrees: 0))
+    }
+    
+    static func rotating(rotation: Double) -> AnyTransition {
+        return AnyTransition.modifier(active: RotateViewModifier(degrees: rotation),
+                                      identity: RotateViewModifier(degrees: 0))
+    }
+}
+
 struct ContentView: View {
     
     @State var onOff: Bool = false
     
     var body: some View {
-        VStack {
+        ZStack(content: {
+            Image("img_bg")
+                .resizable()
+                .scaledToFill()
+                .frame(maxWidth: .infinity, maxHeight: .infinity)
+                .ignoresSafeArea(.all)
+                .blur(radius: 5)
             
-            Spacer()
-            
-            if onOff {
-                RoundedRectangle(cornerRadius: 10)
-                    .frame(width: 250, height: 250)
-                    .frame(maxWidth: .infinity, maxHeight: .infinity)
-//                    .transition(.move(edge: .leading))
-//                    .transition(.scale)
-                    .transition(.asymmetric(insertion: .move(edge: .top), removal: .scale))
-            }
-            
-            Button {
-                withAnimation(.spring()) {
-                    onOff.toggle()
+            VStack {
+                if onOff {
+//                    ZStack {
+//                        ForEach(0..<5) { i in
+//                            Image("img_la_bai")
+//                                .resizable()
+//                                .aspectRatio(contentMode: .fit)
+//                                .cornerRadius(10.0)
+//                                .frame(width: 200, height: 400)
+//                                .transition(.rotating(rotation: 200))
+//                                .rotationEffect(Angle(degrees: Double(i * 5)), anchor: .bottomLeading)
+//                        }
+//                    }
+                    
+                    Image("img_la_bai")
+                        .resizable()
+                        .aspectRatio(contentMode: .fit)
+                        .cornerRadius(10.0)
+                        .frame(width: 200, height: 400)
+                        .transition(.rotating(rotation: 200))
                 }
-            } label: {
-                Text("Click here")
-            }
+                
+                Button {
+                    withAnimation(.easeInOut(duration: 5.0)) {
+                        onOff.toggle()
+                    }
+                } label: {
+                    Text("Assignment")
+                        .fontWeight(.bold)
+                        .foregroundColor(.white)
+                }
 
-        }
-        .padding()
+            }
+        })
     }
 }
 
