@@ -144,7 +144,7 @@ final class UnitTestingBootcampViewModel_Tests: XCTestCase {
         // Given
         let vm = UnitTestingBootcampViewModel(isPremium: Bool.random())
         
-        // when
+        // When
         let loopCount: Int = Int.random(in: 1..<100)
         for _ in 0..<loopCount {
             vm.addItem(item: UUID().uuidString)
@@ -158,5 +158,61 @@ final class UnitTestingBootcampViewModel_Tests: XCTestCase {
         XCTAssertNotEqual(vm.dataArray.count, 0)
         
         XCTAssertGreaterThan(vm.dataArray.count, 0)
+    }
+    
+    // MARK: - Test Selected Item
+    func test_UnitTestingBootcampViewModel_selectedItem_shouldBeNilWhenSelectingInvalidItem() {
+        // Given
+        let vm = UnitTestingBootcampViewModel(isPremium: Bool.random())
+        
+        // When
+        
+        // Valid case
+        let newItem: String = UUID().uuidString
+        vm.addItem(item: newItem)
+        vm.selectedItem(item: newItem)
+        
+        // Invalid case
+        vm.selectedItem(item: UUID().uuidString)
+        
+        // Then
+        XCTAssertNil(vm.selectedItem)
+    }
+    
+//    func test_UnitTestingBootcampViewModel_selectedItem_shouldBeSelected() {
+//        // Given
+//        let vm = UnitTestingBootcampViewModel(isPremium: Bool.random())
+//
+//        // When
+//        let newItem: String = UUID().uuidString
+//        vm.addItem(item: newItem)
+//        vm.selectedItem(item: newItem)
+//
+//        // Then
+//        XCTAssertNotNil(vm.selectedItem)
+//        XCTAssertEqual(vm.selectedItem, newItem)
+//    }
+    
+    // Combine random for Int, String, element in an Array
+    func test_UnitTestingBootcampViewModel_selectedItem_shouldBeSelected_stress() {
+        // Given
+        let vm = UnitTestingBootcampViewModel(isPremium: Bool.random())
+
+        // When
+        let loopCount: Int = Int.random(in: 1..<100)
+        var tempArray: [String] = []
+        
+        for _ in 0..<loopCount {
+            let newItem: String = UUID().uuidString
+            vm.addItem(item: newItem)
+            tempArray.append(newItem)
+        }
+        
+        let randomItem = tempArray.randomElement() ?? ""
+        vm.selectedItem(item: randomItem)
+
+        // Then
+        XCTAssertNotNil(vm.selectedItem)
+        XCTAssertEqual(vm.selectedItem, randomItem)
     }
 }
