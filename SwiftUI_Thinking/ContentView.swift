@@ -23,19 +23,19 @@ struct RotateViewModifier: ViewModifier {
 
 extension AnyTransition {
     static var rotating: AnyTransition {
-        return AnyTransition.modifier(active: RotateViewModifier(degrees: 180),
+        modifier(active: RotateViewModifier(degrees: 180),
                                       identity: RotateViewModifier(degrees: 0))
     }
     
     static func rotating(rotation: Double) -> AnyTransition {
-        return AnyTransition.modifier(active: RotateViewModifier(degrees: rotation),
+        modifier(active: RotateViewModifier(degrees: rotation),
                                       identity: RotateViewModifier(degrees: 0))
     }
     
     static func rotateOn() -> AnyTransition {
 //        return AnyTransition.asymmetric(insertion: .move(edge: .bottom),
 //                                        removal: .scale)
-        return AnyTransition.asymmetric(insertion: .rotating,
+        asymmetric(insertion: .rotating,
                                         removal: .move(edge: .bottom))
     }
 }
