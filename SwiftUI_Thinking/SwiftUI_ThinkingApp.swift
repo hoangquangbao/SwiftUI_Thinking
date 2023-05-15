@@ -9,9 +9,12 @@ import SwiftUI
 
 @main
 struct SwiftUI_ThinkingApp: App {
+    
+    static var isPremium: Bool = false
+    
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            UnitTestingBootcampView(isPremium: SwiftUI_ThinkingApp.isPremium)
         }
     }
 }
