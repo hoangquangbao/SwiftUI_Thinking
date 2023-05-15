@@ -31,6 +31,13 @@ extension AnyTransition {
         return AnyTransition.modifier(active: RotateViewModifier(degrees: rotation),
                                       identity: RotateViewModifier(degrees: 0))
     }
+    
+    static func rotateOn() -> AnyTransition {
+//        return AnyTransition.asymmetric(insertion: .move(edge: .bottom),
+//                                        removal: .scale)
+        return AnyTransition.asymmetric(insertion: .rotating,
+                                        removal: .move(edge: .bottom))
+    }
 }
 
 struct ContentView: View {
@@ -47,6 +54,16 @@ struct ContentView: View {
                 .blur(radius: 5)
             
             VStack {
+                Button {
+                    withAnimation(.easeInOut(duration: 2.0)) {
+                        onOff.toggle()
+                    }
+                } label: {
+                    Text("Assignment")
+                        .fontWeight(.bold)
+                        .foregroundColor(.white)
+                }
+                
                 if onOff {
 //                    ZStack {
 //                        ForEach(0..<5) { i in
@@ -65,19 +82,9 @@ struct ContentView: View {
                         .aspectRatio(contentMode: .fit)
                         .cornerRadius(10.0)
                         .frame(width: 200, height: 400)
-                        .transition(.rotating(rotation: 200))
+//                        .transition(.rotating(rotation: 200))
+                        .transition(.rotateOn())
                 }
-                
-                Button {
-                    withAnimation(.easeInOut(duration: 5.0)) {
-                        onOff.toggle()
-                    }
-                } label: {
-                    Text("Assignment")
-                        .fontWeight(.bold)
-                        .foregroundColor(.white)
-                }
-
             }
         })
     }
