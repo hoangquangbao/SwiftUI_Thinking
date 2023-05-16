@@ -215,4 +215,56 @@ final class UnitTestingBootcampViewModel_Tests: XCTestCase {
         XCTAssertNotNil(vm.selectedItem)
         XCTAssertEqual(vm.selectedItem, randomItem)
     }
+    
+    func test_UnitTestingBootcampViewModel_saveItem_shouldThrowError_noData() {
+        // Give
+        let vm = UnitTestingBootcampViewModel(isPremium: Bool.random())
+        
+        // When
+        
+        // Then
+        XCTAssertThrowsError(try vm.saveItem(item: ""))
+        XCTAssertThrowsError(try vm.saveItem(item: ""), "Should throw error no data") { error in
+            let returnedError = error as? UnitTestingBootcampViewModel.DataError
+            XCTAssertEqual(returnedError, UnitTestingBootcampViewModel.DataError.noData)
+        }
+    }
+    
+    func test_UnitTestingBootcampViewModel_saveItem_shouldThrowError_itemNotFound() {
+        // Given
+        let vm = UnitTestingBootcampViewModel(isPremium: Bool.random())
+
+        // When
+        let loopCount: Int = Int.random(in: 1..<100)
+        for _ in 0..<loopCount {
+            vm.addItem(item: UUID().uuidString)
+        }
+        
+        // Then
+        XCTAssertThrowsError(try vm.saveItem(item: UUID().uuidString))
+        XCTAssertThrowsError(try vm.saveItem(item: UUID().uuidString), "Should throw item not found error") { error in
+            let returnedError = error as? UnitTestingBootcampViewModel.DataError
+            XCTAssertEqual(returnedError, UnitTestingBootcampViewModel.DataError.itemNotFound)
+        }
+    }
+    
+    func test_UnitTestingBootcampViewModel_saveItem_shouldNotThrowError() {
+        // Given
+        let vm = UnitTestingBootcampViewModel(isPremium: Bool.random())
+
+        // When
+        let loopCount: Int = Int.random(in: 1..<100)
+        var tempArray: [String] = []
+        for _ in 0..<loopCount {
+            let newItem: String = UUID().uuidString
+            vm.addItem(item: newItem)
+            tempArray.append(newItem)
+        }
+
+        let randomItem = tempArray.randomElement() ?? ""
+
+        // Then
+        XCTAssertNoThrow(try vm.saveItem(item: randomItem))
+        XCTAssertNoThrow(try vm.saveItem(item: randomItem), "Should not throw error")
+    }
 }
