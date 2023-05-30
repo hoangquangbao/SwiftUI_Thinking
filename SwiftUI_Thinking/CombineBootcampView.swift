@@ -254,6 +254,8 @@ class CombineBootcampViewModel: ObservableObject {
         /// Nó sẽ trả về cùng lúc 2 phần tử
 //            .collect(2)
         */
+        
+            .map({ String($0) })
             .sink { completion in
                 switch completion {
                 case .finished:
