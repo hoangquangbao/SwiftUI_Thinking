@@ -9,15 +9,24 @@ import SwiftUI
 import Combine
 
 class CombineDataService {
-    @Published var basicPublisher: [String] = []
+//    @Published var basicPublisher: String = "first publish"
+//    let currentValuePublisher = CurrentValueSubject<String, Never>("first publish")
+    /// Sometime works with api then we will replacing "Never" with "Error" as below
+    let currentValuePublisher = CurrentValueSubject<String, Error>("first publish")
     
     init() {
         publisherFakedata()
     }
     
     private func publisherFakedata() {
-        DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
-            self.basicPublisher = ["means", "breakfast", "launch", "dinner"]
+        
+        let items = ["means", "breakfast", "launch", "dinner"]
+        
+        for i in items.indices {
+            DispatchQueue.main.asyncAfter(deadline: .now() + Double(i)) {
+//                self.basicPublisher = items[i]
+                self.currentValuePublisher.send(items[i])
+            }
         }
     }
 }
@@ -33,7 +42,8 @@ class CombineBootcampViewModel: ObservableObject {
     }
     
     private func addSubscriber() {
-        dataService.$basicPublisher
+//        dataService.$basicPublisher
+        dataService.currentValuePublisher
             .sink { completion in
                 switch completion {
                 case .finished:
@@ -43,7 +53,7 @@ class CombineBootcampViewModel: ObservableObject {
                     break
                 }
             } receiveValue: { [weak self] returnValue in
-                self?.data = returnValue
+                self?.data.append(returnValue)
             }
             .store(in: &cancellable)
     }
