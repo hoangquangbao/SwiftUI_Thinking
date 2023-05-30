@@ -24,7 +24,7 @@ class CombineDataService {
     private func publisherFakedata() {
         
 //        let items = ["means", "breakfast", "launch", "dinner"]
-        let items: [Int] = Array(1..<11)
+        let items: [Int] = [1,2,3,4,5,6,7,8,9,10]
         
         for i in items.indices {
             DispatchQueue.main.asyncAfter(deadline: .now() + Double(i)/2) {
@@ -139,7 +139,121 @@ class CombineBootcampViewModel: ObservableObject {
 //                return int1 < int2
 //            })
         */
+
+        //MARK: - Filter / Reducing Operation
+        
+        /*
+        // MAP
+//            .map({ String($0) })
+//            .tryMap({ int in
+//                if int == 5 {
+//                    throw URLError(.badServerResponse)
+//                }
+//                return String(int)
+//            })
+        /// It the same tryMap but in with additional we will return a value
+//            .compactMap({ int in
+//                if 2 < int && int <= 8 {
+//                    return nil
+//                }
+//                return String(int)
+//            })
+        /// 1,2,9,10
+        
+        // COMPACT MAP
+//            .tryCompactMap({ int in
+//                if int == 3 {
+//                    return nil
+//                }
+//
+//                if int == 5 {
+//                    throw URLError(.badServerResponse)
+//                }
+//                return String(int)
+//            })
+        /// 1,2,4 and URLError
+        
+        // FILTER
+//            .filter({ $0 > 5 && $0 < 9 })
+        /// 6,7,8
+//            .tryFilter({ int in
+//                if int == 6 {
+//                    throw URLError(.badServerResponse)
+//                }
+//                return int % 2 == 0
+//            })
+        /// 2,4 and URLError
+        
+        // REMOVE DUPLICATES
+//            .removeDuplicates()
+        /// 1,2,3,4,5,6,7,8,9,10
+//            .removeDuplicates(by: { $0 == $1 })
+        /// 1,2,3,4,5,6,7,8,9,10
+//            .tryRemoveDuplicates(by: { int1, int2 in
+//                if int1 < int2 {
+//                    throw URLError(.badServerResponse)
+//                }
+//                return (int1 != 0)
+//            })
+        /// 1 and URLError
+        
+        // REPLACE
+        /// Replace nil value with 5 value
+//            .replaceNil(with: 5)
+//            .replaceEmpty(with: 5)
+        /// We can combine replace with tryMap to replace error with a default value
+//            .tryMap({ int in
+//                if int == 5 {
+//                    throw URLError(.badServerResponse)
+//                }
+//                return String(int)
+//            })
+//            .replaceError(with: String(7))
+        /// 1,2,3,4,7
+        
+        // SCAN
+//            .scan(3, { existingValue, newValue in
+//                return existingValue + newValue
+//            })
+        /// We can use this two command lines below to replace for full command line above
+//            .scan(3, { $0 + $1 })
+//            .scan(3, +)
+        /// 4,6,9,13,18,24,31,39,48,58
+        
+        // REDUCE
+        /// It return final value after plug each value, result of the command line is 58
+//            .reduce(3, { existingValue, newValue in
+//                return existingValue + newValue
+//            })
+//            .reduce(3, +)
+        
+        // SATISFY
+//            .allSatisfy({ $0 < 10 })
+        /*
+         let targetRange = (-1...100)
+         let numbers = [-1, 0, 10, 5]
+         numbers.publisher
+             .allSatisfy { targetRange.contains($0) }
+             .sink { print("\($0)") }
+
+         // Prints: "true"
+         */
+//            .tryAllSatisfy({ bool in
+//                if (bool != 0) {
+//                    throw URLError(.badServerResponse)
+//                }
+//                return (bool != 0)
+//            })
+        
+        // COLECTION
+        /// Nó sẽ trả về một lúc nhiều giá trị tuỳ thuộc mình chỉ định trong collect
+        /// Và ta phải đặt nó sau map khi đó mứi có tác dụng
             .map({ String($0) })
+        /// Nó sẽ trả về kiểu mảng vì vậy mình có thể gán = thay về append như từng phần tử
+//            .collect()
+        /// Nó sẽ trả về cùng lúc 2 phần tử
+//            .collect(2)
+        */
             .sink { completion in
                 switch completion {
                 case .finished:
@@ -149,6 +263,7 @@ class CombineBootcampViewModel: ObservableObject {
                     break
                 }
             } receiveValue: { [weak self] returnValue in
+//                self?.data.append(contentsOf: returnValue)
                 self?.data.append(returnValue)
             }
             .store(in: &cancellable)
