@@ -1,4 +1,8 @@
-# SwiftUI_Thinking
+# Combine
 
-Init example combine project with ViewModel and Service.
-After that will be execute some available func of the combine.
+##### CurrentValueSubject
+- Replace a publisher variable with the CurrentValueSubject
+- `let currentValuePublisher = CurrentValueSubject<String, Error>("first publish")`
+##### PassthroughSubject
+- That works the exact same way as CurrentValueSubject except it don't hold stating value
+- `let passThrounghPublisher = PassthroughSubject<String, Error>()`
