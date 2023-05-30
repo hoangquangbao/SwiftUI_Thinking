@@ -12,10 +12,10 @@ class CombineDataService {
 //    @Published var basicPublisher: String = "first publish"
 //    let currentValuePublisher = CurrentValueSubject<String, Never>("first publish")
     /// Sometime works with api then we will replacing "Never" with "Error" as below
-    let currentValuePublisher = CurrentValueSubject<String, Error>("first publish")
+//    let currentValuePublisher = CurrentValueSubject<String, Error>("first publish")
     
     /// That works the exact same way as the CurrentValueSubject except it don't hold starting value
-    let passThrounghPublisher = PassthroughSubject<String, Error>()
+    let passThrounghPublisher = PassthroughSubject<Int, Error>()
     
     init() {
         publisherFakedata()
@@ -23,7 +23,8 @@ class CombineDataService {
     
     private func publisherFakedata() {
         
-        let items = ["means", "breakfast", "launch", "dinner"]
+//        let items = ["means", "breakfast", "launch", "dinner"]
+        let items: [Int] = Array(1..<11)
         
         for i in items.indices {
             DispatchQueue.main.asyncAfter(deadline: .now() + Double(i)) {
@@ -49,6 +50,7 @@ class CombineBootcampViewModel: ObservableObject {
 //        dataService.$basicPublisher
 //        dataService.currentValuePublisher
         dataService.passThrounghPublisher
+            .map({ String($0) })
             .sink { completion in
                 switch completion {
                 case .finished:
