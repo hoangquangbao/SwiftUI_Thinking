@@ -11,27 +11,27 @@
 ##### Sequence Operation
 ###### **1. FIRST**
             .first()
-            .first(where: <#T##(Int) -> Bool#>)
-            .tryFirst(where: <#T##(Publishers.First<PassthroughSubject<Int, Error>>.Output) throws -> Bool#>)
+            .first(where: )
+            .tryFirst(where: )
 ###### **2. LAST**
             .last()
-            .last(where: <#T##(Int) -> Bool#>)
-            .tryLast(where: <#T##(Publishers.Last<PassthroughSubject<Int, Error>>.Output) throws -> Bool#>)
+            .last(where: )
+            .tryLast(where: )
 ###### **3. DROP**
             .dropFirst()
-            .drop(while: <#T##(Int) -> Bool#>)
-            .tryDrop(while: <#T##(Publishers.Drop<PassthroughSubject<Int, Error>>.Output) throws -> Bool#>)
-            .drop(untilOutputFrom: <#T##Publisher#>)
+            .drop(while: )
+            .tryDrop(while: )
+            .drop(untilOutputFrom: )
 ###### **4. PREFIT**
-            .prefix(<#T##maxLength: Int##Int#>)
-            .prefix(while: <#T##(Int) -> Bool#>)
-            .tryPrefix(while: <#T##(Publishers.Output<PassthroughSubject<Int, Error>>.Output) throws -> Bool#>)
-            .prefix(untilOutputFrom: <#T##Publisher#>)
+            .prefix()
+            .prefix(while: )
+            .tryPrefix(while: )
+            .prefix(untilOutputFrom: )
 ###### **5. OUTPUT**
-            .output(at: <#T##Int#>)
-            .output(in: <#T##RangeExpression#>)
+            .output(at: )
+            .output(in: )
 <details>
-<summary>Code</summary>
+<summary>CODE</summary>
 
 ```
         //MARK: - Sequence Operation
@@ -95,6 +95,44 @@
         /// 3,4,5,6,7
 ```
 </details>
+
+##### Mathematic Operation
+###### **1. MAX**
+            .max()
+            .max(by: )
+            .tryMax(by: )
+###### **2. MIN**
+            .min()
+            .min(by: )
+            .tryMin(by: )
+<details>
+<summary>CODE</summary>
+
+```
+        //MARK: - Mathematic Operation
+            
+        // MAX
+            .max()
+            .max(by: {  $0 < $1 })
+            .tryMax(by: { int1, int2 in
+                if int1 == 5 {
+                    throw URLError(.badServerResponse)
+                }
+                return int1 < int2
+            })
+        
+        // MIN
+            .min()
+            .min(by: { $0 < $1 })
+            .tryMin(by: { int1, int2 in
+                if int1 == 5 {
+                    throw URLError(.badServerResponse)
+                }
+                return int1 < int2
+            })
+```
+</details>
+
 
 
 
