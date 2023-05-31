@@ -342,3 +342,89 @@
             
 ```
 </details>
+
+### Multiple Publishers / Subscribers
+###### **1. COMPACT**
+            .combineLatest()
+            .compactMap()
+###### **2. MERGE**
+            .merge(with: Publisher)
+###### **3. ZIP**
+            .zip(Publisher)
+            .map({ tuple in
+                
+            })
+###### **4. TRYMAP / CATCH**
+            .tryMap({ Int in
+                
+            })
+            .catch({  in
+                
+            })
+            
+<details>
+<summary>CODE</summary>
+            
+```
+                    // MARK: - Multiple Publishers / Subscribers
+        
+        // COMPACT
+         /// Combine many Publisher together
+         /// After that use compactMap to show it
+//            .combineLatest(dataService.boolPublisher, dataService.intPublisher)
+//            .compactMap({ (int1, bool, int2) in
+//                if bool {
+//                    return String(int1)
+//                }
+//                return int2
+//            })
+         /// Rút gọn code
+            .compactMap({ $1 ? String($0) : String($2) })
+            .removeDuplicates()
+        
+        // MERGE
+        /// Merger result of publisher and requires of type is  equivalent
+        /// Int with Int, Bool with Bool, Double with Double,...
+            .merge(with: dataService.intPublisher)
+        /// Result: 1,2,3,4,5,6,888,7,888,8,888,9,10
+        
+        // ZIP
+        /// Zip dùng để kết hợp kêt quả của nhiều publisher lại với nhau theo từng bộ sau đó publishing.
+        /// Sau đó ta dùng map (tuple đại diện) để show ra cái đó.
+        /// Số phần tử thu được sẽ = với số lượng publisher ít nhất
+        /// Như ex: Dù là i > 4 && i < 8 = 5,6,7 thì = true, còn lại = false và ta chỉ zip cái giá trị bool nên nó sẽ in ra đủ 10 bộ
+//            .zip(dataService.boolPublisher)
+//            .map({ tuple in
+//                return String(tuple.0) + tuple.1.description
+//            })
+        /// Ngược lại, như ví dụ dưới:
+        /// ex: i > 4 && i < 8 = 5,6,7 và ta zip cả int nên kết quả thu được chỉ có 3 elements
+            .zip(dataService.boolPublisher, dataService.intPublisher)
+//            .map({ (int, bool) in
+//                if bool {
+//                    return String(int)
+//                }
+//                return "n/a"
+//            })
+        /// or
+            .map({ tuple in
+                return String(tuple.0) + " " + tuple.1.description + " " + String(tuple.2)
+            })
+        
+        // TRY MAP / CATCH
+        /// Will print 1,2,3,4 and when = 5 it will be got URLError
+        /// If URLError will be print intPublisher
+        /// Because intPublisher had 3 lements (i > 4 && i < 8 = 5,6,7)
+        /// So result: 1,2,3,4,888,888,888
+            .tryMap({ int in
+                if int == 5 {
+                    throw URLError(.badServerResponse)
+                }
+                return int
+            })
+            .catch({ error in
+                return self.dataService.intPublisher
+            })
+
+```
+</details>          
