@@ -280,4 +280,65 @@
 ```
 </details>
 
-
+### Filter / Reducing Operation
+###### **1. DEBOUND**
+            .debounce(for: , scheduler: )     
+###### **2. DELAY**
+            .delay(for: , scheduler: )
+###### **3. MEASURE INTERVAL**
+            /// measureInterval must works with Map Stride as below
+            .measureInterval(using: DispatchQueue.main)
+            .map({ stride in
+                return "\(stride.timeInterval)"
+            })
+###### **4. THROTTLE**
+            .throttle(for: , scheduler: , latest: )
+###### **5. RETRY**
+            .retry(Int)
+###### **6. TIMEOUT**
+            .timeout(, scheduler: )
+<details>
+<summary>CODE</summary>
+            
+```
+        //MARK: - Timing Operations
+        
+        // DEBOUND
+        /// Thời gian được tính từ khi xuất bản.
+        /// VD: xuất bản ở giây 0.25 thì 2 giây sau nó mới đẩy đi
+        /// Trong vòng 2 giây đó: có giá trị mới thì xuất bản giá trị đó
+        /// Không có giá trị mới thì xuất bản giá trị cuói cùng
+        /// Cái này check lại phần xuất bản giá trị cuối
+            .debounce(for: 2, scheduler: DispatchQueue.main)
+        
+        // DELAY
+            .delay(for: 5, scheduler: DispatchQueue.main)
+        
+        // MEASURE INTERVAL
+        /// measureInterval must be works with Map Stride as below
+            .measureInterval(using: DispatchQueue.main)
+            .map({ stride in
+                return "\(stride.timeInterval)"
+            })
+        
+        // THROTTLE
+        /// Inteval of each publisher
+        /// Thời gian được tỉnh từ ban đầu, không phụ thuộc vào lần xuất bản cuối như debound. Đây là sự khác nhau giữa hai cái.
+        /// latest:
+        ///  - true: Đúng thời gian 3s mà không có phần tử nào thì lấy phần tử cuối cùng
+        ///   - false: Đúng thời gian 3s mà không có phần tử nào thì lấy phần tử đầu tiên nhận được
+            .throttle(for: 1.5, scheduler: DispatchQueue.main, latest: true)
+        
+        // RETRY
+        /// While get data from API, if error then we will special times retry request.
+            .retry(3)
+        
+        // TIMEOUT
+        /// This is waiting inteval before start publisher
+        /// EX: We set delay is 5 senconds then we will not get anything values because timeout is 4 seconds
+        /// .delay(for: 5, scheduler: DispatchQueue.main)
+        /// .timeout(4, scheduler: DispatchQueue.main)
+            .timeout(0.3, scheduler: DispatchQueue.main)
+            
+```
+</details>
