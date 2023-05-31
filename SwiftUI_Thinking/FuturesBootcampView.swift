@@ -28,15 +28,14 @@ class FuturesBootcampViewModel: ObservableObject {
         /// Get data with Combine
 //        getCombinePublisher()
         /// Get data with Future and Promise
-        getFuturePublisher()
-        
+//        getFuturePublisher()
         /// General part
-            .sink { _ in
-
-            } receiveValue: { [weak self] returnValue in
-                self?.title = returnValue
-            }
-            .store(in: &cancellables)
+//            .sink { _ in
+//
+//            } receiveValue: { [weak self] returnValue in
+//                self?.title = returnValue
+//            }
+//            .store(in: &cancellables)
         
         /// Get data with @escaping Closure
 //        getEscapingClosure { [weak self] returnValue, error in
@@ -47,6 +46,12 @@ class FuturesBootcampViewModel: ObservableObject {
 //            }
 //        }
 
+        doSomethingWithFuture()
+            .sink { _ in
+            } receiveValue: { [weak self] returnValue in
+                self?.title = returnValue
+            }
+            .store(in: &cancellables)
     }
     
     func getCombinePublisher() -> AnyPublisher<String, URLError> {
@@ -74,6 +79,24 @@ class FuturesBootcampViewModel: ObservableObject {
                 } else {
                     promise(.success(returnValue))
                 }
+            }
+        }
+    }
+    
+    
+    //MARK: - Bonus
+    /// In a func, if you delay a inteval before return the you must be using closure
+    /// Because with normal it is return immediately
+    func doSomething(completionHandle: @escaping (_ returnValue: String) -> ()) {
+        DispatchQueue.main.asyncAfter(deadline: .now() + 5) {
+            completionHandle("Something new values")
+        }
+    }
+    
+    func doSomethingWithFuture() -> Future<String, Never> {
+        Future { promise in
+            self.doSomething { returnValue in
+                promise(.success(returnValue))
             }
         }
     }
