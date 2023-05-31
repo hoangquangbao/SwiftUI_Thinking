@@ -50,11 +50,16 @@ class CombineDataService {
 }
 
 class CombineBootcampViewModel: ObservableObject {
+    
     @Published var data: [String] = []
+    @Published var dataBool: [Bool] = []
+
     @Published var dataService = CombineDataService()
     @Published var error: String = ""
     
     var cancellable = Set<AnyCancellable>()
+    
+    let multiCastPublisher = PassthroughSubject<Int, Error>()
     
     init() {
         addSubscriber()
@@ -63,7 +68,7 @@ class CombineBootcampViewModel: ObservableObject {
     private func addSubscriber() {
 //        dataService.$basicPublisher
 //        dataService.currentValuePublisher
-        dataService.passThrounghPublisher
+//        dataService.passThrounghPublisher
         
         //MARK: - Sequence Operation
         /*
@@ -362,8 +367,16 @@ class CombineBootcampViewModel: ObservableObject {
 //            .catch({ error in
 //                return self.dataService.intPublisher
 //            })
-        */
+         */
         
+        // MARK: - Share Publisher and delay Publishing
+        let sharePublisher = dataService.passThrounghPublisher
+            .share()
+            .multicast(subject: multiCastPublisher)
+        
+        /// Get data for String Array
+//        dataService.passThrounghPublisher
+        sharePublisher
             .map({ String($0) })
             .sink { completion in
                 switch completion {
@@ -378,6 +391,30 @@ class CombineBootcampViewModel: ObservableObject {
                 self?.data.append(returnValue)
             }
             .store(in: &cancellable)
+        
+        /// Get data for Bool array
+//        dataService.passThrounghPublisher
+        sharePublisher
+            .map({ $0 > 5 })
+            .sink { completion in
+                switch completion {
+                case .finished:
+                    break
+                case .failure(let error):
+                    self.error = error.localizedDescription
+                    break
+                }
+            } receiveValue: { [weak self] returnValue in
+//                self?.data.append(contentsOf: returnValue)
+                self?.dataBool.append(returnValue)
+            }
+            .store(in: &cancellable)
+        
+        DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
+            sharePublisher
+                .connect()
+                .store(in: &self.cancellable)
+        }
     }
 }
 
@@ -387,17 +424,27 @@ struct CombineBootcampView: View {
     
     var body: some View {
         ScrollView(.vertical, showsIndicators: false) {
-            VStack(spacing: 10) {
-                ForEach(vm.data, id: \.self) {
-                    Text($0)
-                        .font(.headline)
-                        .foregroundColor(.black)
+            HStack(spacing: 20) {
+                VStack(spacing: 10) {
+                    ForEach(vm.data, id: \.self) {
+                        Text($0)
+                            .font(.headline)
+                            .foregroundColor(.black)
+                    }
+                    
+                    if !vm.error.isEmpty {
+                        Text(vm.error)
+                            .font(.headline)
+                            .foregroundColor(.red)
+                    }
                 }
                 
-                if !vm.error.isEmpty {
-                    Text(vm.error)
-                        .font(.headline)
-                        .foregroundColor(.red)
+                VStack(spacing: 10) {
+                    ForEach(vm.dataBool, id: \.self) {
+                        Text($0.description)
+                            .font(.headline)
+                            .foregroundColor(.black)
+                    }
                 }
             }
         }
