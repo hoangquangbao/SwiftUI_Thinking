@@ -32,6 +32,14 @@ class DoCatchTryThrowDataManager {
             return .failure(URLError(.badURL))
         }
     }
+    
+    func getTitle3() throws -> String {
+        if isActivate {
+            return "NEW VALUE"
+        } else {
+            throw URLError(.badURL)
+        }
+    }
 }
 
 class DoCatchTryThrowViewModel: ObservableObject {
@@ -58,6 +66,14 @@ class DoCatchTryThrowViewModel: ObservableObject {
             self.text = error.localizedDescription
         }
     }
+    
+    func fetchTitle3() {
+        do {
+            self.text = try self.dataManager.getTitle3()
+        } catch {
+            self.text = error.localizedDescription
+        }
+    }
 }
 
 struct DoCatchTryThrowsBootcamp: View {
@@ -71,7 +87,8 @@ struct DoCatchTryThrowsBootcamp: View {
             .frame(width: 300, height: 300)
             .onTapGesture {
 //                vm.fetchTitle()
-                vm.fetchTitle2()
+//                vm.fetchTitle2()
+                vm.fetchTitle3()
             }
     }
 }
