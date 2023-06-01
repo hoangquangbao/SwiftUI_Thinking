@@ -12,6 +12,7 @@
 		06A9ED7529335C980060FB24 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06A9ED7429335C980060FB24 /* ContentView.swift */; };
 		06A9ED7729335C9A0060FB24 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 06A9ED7629335C9A0060FB24 /* Assets.xcassets */; };
 		06A9ED7A29335C9A0060FB24 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 06A9ED7929335C9A0060FB24 /* Preview Assets.xcassets */; };
+		06C1CCB12A2839BE004D42F4 /* ThrottleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06C1CCB02A2839BE004D42F4 /* ThrottleView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -21,6 +22,7 @@
 		06A9ED7429335C980060FB24 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		06A9ED7629335C9A0060FB24 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		06A9ED7929335C9A0060FB24 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		06C1CCB02A2839BE004D42F4 /* ThrottleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThrottleView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -58,6 +60,7 @@
 				06A9ED7629335C9A0060FB24 /* Assets.xcassets */,
 				06A9ED7829335C9A0060FB24 /* Preview Content */,
 				068166C62A2589A1004277FE /* CombineBootcampView.swift */,
+				06C1CCB02A2839BE004D42F4 /* ThrottleView.swift */,
 			);
 			path = SwiftUI_Thinking;
 			sourceTree = "<group>";
@@ -142,6 +145,7 @@
 			files = (
 				06A9ED7529335C980060FB24 /* ContentView.swift in Sources */,
 				06A9ED7329335C980060FB24 /* SwiftUI_ThinkingApp.swift in Sources */,
+				06C1CCB12A2839BE004D42F4 /* ThrottleView.swift in Sources */,
 				068166C72A2589A1004277FE /* CombineBootcampView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

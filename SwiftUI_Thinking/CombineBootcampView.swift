@@ -271,11 +271,51 @@ class CombineBootcampViewModel: ObservableObject {
         //MARK: - Timing Operations
         /*
         // DEBOUND
-        /// Thời gian được tính từ khi xuất bản.
+        /// Thời gian bắt đầu đếm tính từ lần xuất bản cuối cùng.
         /// VD: xuất bản ở giây 0.25 thì 2 giây sau nó mới đẩy đi
-        /// Trong vòng 2 giây đó: có giá trị mới thì xuất bản giá trị đó
+        /// Trong vòng 2 giây đó: có giá trị mới thì xuất bản giá trị đó. Sau đó bắt đầu đếm lại.
         /// Không có giá trị mới thì xuất bản giá trị cuói cùng
-        /// Cái này check lại phần xuất bản giá trị cuối
+         /*
+          Example:
+          let bounces:[(Int,TimeInterval)] = [
+              (0, 0),
+              (1, 0.25),  // 0.25s interval since last index
+              (2, 1),     // 0.75s interval since last index
+              (3, 1.25),  // 0.25s interval since last index
+              (4, 1.5),   // 0.25s interval since last index
+              (5, 2)      // 0.5s interval since last index
+          ]
+
+          let subject = PassthroughSubject<Int, Never>()
+          cancellable = subject
+              .debounce(for: .seconds(0.5), scheduler: RunLoop.main)
+              .sink { index in
+                  print ("Received index \(index)")
+              }
+
+          for bounce in bounces {
+              DispatchQueue.main.asyncAfter(deadline: .now() + bounce.1) {
+                  subject.send(bounce.0)
+              }
+          }
+
+          // Prints:
+          //  Received index 1
+          //  Received index 4
+          //  Received index 5
+
+          //  Here is the event flow shown from the perspective of time, showing value delivery through the `debounce()` operator:
+
+          //  Time 0: Send index 0.
+          //  Time 0.25: Send index 1. Index 0 was waiting and is discarded.
+          //  Time 0.75: Debounce period ends, publish index 1.
+          //  Time 1: Send index 2.
+          //  Time 1.25: Send index 3. Index 2 was waiting and is discarded.
+          //  Time 1.5: Send index 4. Index 3 was waiting and is discarded.
+          //  Time 2: Debounce period ends, publish index 4. Also, send index 5.
+          //  Time 2.5: Debounce period ends, publish index 5.
+          */
+         /// Với các giá trị khác thì nên set theo giá trị lớn nhất
 //            .debounce(for: 2, scheduler: DispatchQueue.main)
         
         // DELAY
@@ -293,7 +333,7 @@ class CombineBootcampViewModel: ObservableObject {
         /// Thời gian được tỉnh từ ban đầu, không phụ thuộc vào lần xuất bản cuối như debound. Đây là sự khác nhau giữa hai cái.
         /// latest:
         ///  - true: Đúng thời gian 3s mà không có phần tử nào thì lấy phần tử cuối cùng
-        ///   - false: Đúng thời gian 3s mà không có phần tử nào thì lấy phần tử đầu tiên nhận được
+        ///  - false: Đúng thời gian 3s mà không có phần tử nào thì lấy phần tử đầu tiên nhận được
 //            .throttle(for: 1.5, scheduler: DispatchQueue.main, latest: true)
         
         // RETRY
@@ -331,9 +371,12 @@ class CombineBootcampViewModel: ObservableObject {
         /// Result: 1,2,3,4,5,6,888,7,888,8,888,9,10
         
         // ZIP
-        /// Zip dùng để kết hợp kêt quả của nhiều publisher lại với nhau theo từng bộ sau đó publishing.
+        /// Zip dùng để kết hợp kêt quả của nhiều publisher lại với nhau theo từng bộ sau đó publish a tuples.
         /// Sau đó ta dùng map (tuple đại diện) để show ra cái đó.
-        /// Số phần tử thu được sẽ = với số lượng publisher ít nhất
+        /// Số phần tử thu được sẽ = với số lượng publisher ít nhất.
+        /// Chỉ publisher khi tất các Publishers emits an event.
+        /// Nếu bất kì publisher nào kết thúc thành công hay fails thì zip nó cũng sẽ có kết quả tương ứng
+        /// If any upstream publisher finishers successfully or fails with an error, so too does the zipped publisher.
         /// Như ex: Dù là i > 4 && i < 8 = 5,6,7 thì = true, còn lại = false và ta chỉ zip cái giá trị bool nên nó sẽ in ra đủ 10 bộ
 //            .zip(dataService.boolPublisher)
 //            .map({ tuple in
