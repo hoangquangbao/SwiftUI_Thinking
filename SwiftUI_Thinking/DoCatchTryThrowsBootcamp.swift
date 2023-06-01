@@ -15,7 +15,7 @@ import SwiftUI
 
 class DoCatchTryThrowDataManager {
     
-    let isActivate: Bool = false
+    let isActivate: Bool = true
     
     func getTitle() -> (title: String?, error: Error?) {
         if isActivate {
@@ -36,6 +36,14 @@ class DoCatchTryThrowDataManager {
     func getTitle3() throws -> String {
         if isActivate {
             return "NEW VALUE"
+        } else {
+            throw URLError(.badURL)
+        }
+    }
+    
+    func getTitle4() throws -> String {
+        if isActivate {
+            return "FINAL VALUE"
         } else {
             throw URLError(.badURL)
         }
@@ -70,6 +78,10 @@ class DoCatchTryThrowViewModel: ObservableObject {
     func fetchTitle3() {
         do {
             self.text = try self.dataManager.getTitle3()
+            self.text = try self.dataManager.getTitle4()
+            /// Ở đây ta chú ý một chút:
+            /// - Nếu chỉ cần 1 trong các comment line nhận giá trị sai thì nó luôn trả về error.
+            /// - Nếu muốn bỏ qua nó thì ta đổi try thành try? thì nó sẽ thực hiện câu lệnh tiếp theo.
         } catch {
             self.text = error.localizedDescription
         }
