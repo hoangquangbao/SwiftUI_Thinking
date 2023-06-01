@@ -21,3 +21,4 @@
 #### [17. Download JSON with URLSession and @escaping_Closures](https://github.com/hoangquangbao/SwiftUI_Thinking/tree/download_JSON_with_urlsession_and_escaping_closures)
 #### [18. Unit Testing](https://github.com/hoangquangbao/SwiftUI_Thinking/tree/unit_testing)
 #### [19. Unit Test with Async func](https://github.com/hoangquangbao/SwiftUI_Thinking/tree/testing_async_func)
+#### [20. Concurrency do-catch, try, throws](https://github.com/hoangquangbao/SwiftUI_Thinking/tree/concurrency)
