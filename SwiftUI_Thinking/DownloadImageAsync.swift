@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import Combine
 
 class DownloadImageAsyncDataManager {
     
@@ -21,12 +22,19 @@ class DownloadImageAsyncDataManager {
         return image
     }
     
-    func downloadImage(completionHandle: @escaping (_ image: UIImage?, _ error: Error?) -> ()) {
+    func downloadImageWithEscapingClosure(completionHandle: @escaping (_ image: UIImage?, _ error: Error?) -> ()) {
         URLSession.shared.dataTask(with: url) { data, response, error in
             let image = self.handleResponse(data: data, response: response)
             completionHandle(image, error)
         }
         .resume()
+    }
+    
+    func downloadImageWithCombine() -> AnyPublisher<UIImage?, Error> {
+        URLSession.shared.dataTaskPublisher(for: url)
+            .map(handleResponse)
+            .mapError({ $0 })
+            .eraseToAnyPublisher()
     }
 }
 
@@ -34,20 +42,35 @@ class DownloadImageAsyncViewModel: ObservableObject {
     
     @Published var image: UIImage? = nil
     @Published var error: Error? = nil
+    
     var dataManager = DownloadImageAsyncDataManager()
+    var cancellable = Set<AnyCancellable>()
     
     init() {
-        getData()
+//        getDataWithEscapingClosure()
+        getDataWithCombine()
     }
     
-    private func getData() {
-        dataManager.downloadImage { [weak self] image, error in
+    private func getDataWithEscapingClosure() {
+        dataManager.downloadImageWithEscapingClosure { [weak self] image, error in
             DispatchQueue.main.async {
                 if let image = image {
                     self?.image = image
                 }
             }
         }
+    }
+    
+    private func getDataWithCombine() {
+        dataManager.downloadImageWithCombine()
+            .sink { _ in
+
+            } receiveValue: { [weak self] image in
+                DispatchQueue.main.async {
+                    self?.image = image
+                }
+            }
+            .store(in: &cancellable)
     }
 }
 
