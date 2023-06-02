@@ -11,17 +11,20 @@ class DownloadImageAsyncDataManager {
     
     let url = URL(string: "https://picsum.photos/200/300")!
     
+    func handleResponse(data: Data?, response: URLResponse?) -> UIImage? {
+        guard let data = data,
+              let image = UIImage(data: data),
+              let response = response as? HTTPURLResponse,
+              response.statusCode >= 200 && response.statusCode < 300 else {
+                  return nil
+              }
+        return image
+    }
+    
     func downloadImage(completionHandle: @escaping (_ image: UIImage?, _ error: Error?) -> ()) {
-        URLSession.shared.dataTask(with: url) { data, responsitory, error in
-            guard let data = data,
-                  let image = UIImage(data: data),
-                  let responsitory = responsitory as? HTTPURLResponse,
-                  responsitory.statusCode >= 200 && responsitory.statusCode < 300,
-                  error == nil else {
-                      completionHandle(nil, error)
-                      return
-                  }
-            completionHandle(image, nil)
+        URLSession.shared.dataTask(with: url) { data, response, error in
+            let image = self.handleResponse(data: data, response: response)
+            completionHandle(image, error)
         }
         .resume()
     }
@@ -42,8 +45,6 @@ class DownloadImageAsyncViewModel: ObservableObject {
             DispatchQueue.main.async {
                 if let image = image {
                     self?.image = image
-                } else {
-                    self?.error = error
                 }
             }
         }
