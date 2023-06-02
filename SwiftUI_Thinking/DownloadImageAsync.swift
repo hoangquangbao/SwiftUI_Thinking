@@ -101,7 +101,8 @@ class DownloadImageAsyncViewModel: ObservableObject {
 //        }
         /// Or try? to handle
         let image = try? await dataManager.downloadImageWithAsync()
-        DispatchQueue.main.async {
+        /// With await we don't use DispatchQueue.main to changes from background threads to main threads because (28:12 seconds). You should use MainActor.run
+        await MainActor.run {
             self.image = image
         }
     }
