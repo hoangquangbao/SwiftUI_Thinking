@@ -36,6 +36,15 @@ class DownloadImageAsyncDataManager {
             .mapError({ $0 })
             .eraseToAnyPublisher()
     }
+    
+    func downloadImageWithAsync() async throws -> UIImage? {
+        do {
+            let (data, response) = try await URLSession.shared.data(from: url)
+            return handleResponse(data: data, response: response)
+        } catch {
+            throw error
+        }
+    }
 }
 
 class DownloadImageAsyncViewModel: ObservableObject {
@@ -48,7 +57,10 @@ class DownloadImageAsyncViewModel: ObservableObject {
     
     init() {
 //        getDataWithEscapingClosure()
-        getDataWithCombine()
+//        getDataWithCombine()
+        Task {
+            await getDataWithAsync()
+        }
     }
     
     private func getDataWithEscapingClosure() {
@@ -63,14 +75,35 @@ class DownloadImageAsyncViewModel: ObservableObject {
     
     private func getDataWithCombine() {
         dataManager.downloadImageWithCombine()
+            .receive(on: DispatchQueue.main)
             .sink { _ in
 
             } receiveValue: { [weak self] image in
-                DispatchQueue.main.async {
-                    self?.image = image
-                }
+//                DispatchQueue.main.async {
+//                    self?.image = image
+//                }
+                /// If we add receive to confirm schedule DispatchQueue.main then
+                self?.image = image
             }
             .store(in: &cancellable)
+    }
+    
+    private func getDataWithAsync() async {
+        /// With Errors thrown from here are not handled we can:
+        /// 1. Use do-catch to handle
+//        do {
+//            let image = try await dataManager.downloadImageWithAsync()
+//            DispatchQueue.main.async {
+//                self.image = image
+//            }
+//        } catch {
+//
+//        }
+        /// Or try? to handle
+        let image = try? await dataManager.downloadImageWithAsync()
+        DispatchQueue.main.async {
+            self.image = image
+        }
     }
 }
 
