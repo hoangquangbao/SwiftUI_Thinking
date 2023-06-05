@@ -1,17 +1,10 @@
-# Concurrency
+//
+//  DownloadImageAsync.swift
+//  SwiftUI_Thinking
+//
+//  Created by Quang Bao on 01/06/2023.
+//
 
-This repository had funcs to download images from internet as "Download with @escaping_Closure, Combine and Async"
-
-### **1. @escaping closure**
-### **2. Combine**
-### **3. Async**
-- Use async keyword to mark it is async function.
-- Use MainActor to changes from background threads to main thread.
-
-<details>
-<summary>Full Code</summary>
-
-```
 import SwiftUI
 import Combine
 
@@ -142,7 +135,3 @@ struct DownloadImageAsync_Previews: PreviewProvider {
         DownloadImageAsync()
     }
 }
-
-  
-```
-</details> 
