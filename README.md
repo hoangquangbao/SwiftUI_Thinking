@@ -145,4 +145,4 @@ struct DownloadImageAsync_Previews: PreviewProvider {
 
   
 ```
-</details> 
+</details>
