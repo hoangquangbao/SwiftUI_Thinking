@@ -9,7 +9,7 @@ import SwiftUI
 
 class TaskGroupDataManage {
     
-    func fetchImage(urlString: String) async throws -> UIImage {
+    private func fetchImage(urlString: String) async throws -> UIImage {
         guard let url = URL(string: urlString) else {
             throw URLError(.badURL)
         }
@@ -37,6 +37,35 @@ class TaskGroupDataManage {
         
         return Array([image1, image2, image3, image4])
     }
+    
+    func fetchingImageWithTaskGroup() async throws -> [UIImage] {
+        
+        let urlStrings: [String] = [
+            "https://picsum.photos/30",
+            "https://picsum.photos/30",
+            "https://picsum.photos/30",
+            "https://picsum.photos/30",
+            "https://picsum.photos/30",
+            "https://picsum.photos/30"
+        ]
+        
+        return try await withThrowingTaskGroup(of: UIImage?.self) { group in
+            var images: [UIImage] = []
+            images.reserveCapacity(urlStrings.count)
+            
+            for urlString in urlStrings {
+                group.addTask { try? await self.fetchImage(urlString: urlString) }
+            }
+            
+            for try await image in group {
+                if image = image {
+                    images.append(image)
+                }
+            }
+            
+            return images
+        }
+    }
 }
 
 class TaskGroupViewModel: ObservableObject {
@@ -45,7 +74,13 @@ class TaskGroupViewModel: ObservableObject {
     var dataManager = TaskGroupDataManage()
     
     func getImage() async throws {
-        if let images = try? await dataManager.fetchingImageWithAsyncLet() {
+//        if let images = try? await dataManager.fetchingImageWithAsyncLet() {
+//            await MainActor.run {
+//                self.images.append(contentsOf: images)
+//            }
+//        }
+        
+        if let images = try? await dataManager.fetchingImageWithTaskGroup() {
             await MainActor.run {
                 self.images.append(contentsOf: images)
             }
