@@ -32,22 +32,50 @@ struct AsynLetView: View {
                 ///- nó sẽ show ra image lâu hơn vì nó chờ cho tất cả fetchImage hoàn tất đã
                 ///- Để giải quyết nó thì ta có thể:
                 ///- CÁCH 1: Chia mỗi fetchImage cho mỗi Task
-                Task {
-                    do {
-                        let image1 = try await fetchImage()
-                        let image2 = try await fetchImage()
-                        let image3 = try await fetchImage()
-                        let image4 = try await fetchImage()
-
-                        self.images.append(image1)
-                        self.images.append(image2)
-                        self.images.append(image3)
-                        self.images.append(image4)
-                    } catch {
-                        
-                    }
-                }
+//                Task {
+//                    do {
+//                        let image1 = try await fetchImage()
+//                        let image2 = try await fetchImage()
+//                        let image3 = try await fetchImage()
+//                        let image4 = try await fetchImage()
+//
+//                        self.images.append(image1)
+//                        self.images.append(image2)
+//                        self.images.append(image3)
+//                        self.images.append(image4)
+//                    } catch {
+//
+//                    }
+//                }
                 ///CÁCH 2: ...
+//                Task {
+//                    do {
+//                        let fetchImage1 = try await fetchImage()
+//                        let fetchImage2 = try await fetchImage()
+//                        let fetchImage3 = try await fetchImage()
+//                        let fetchImage4 = try await fetchImage()
+//
+//                        let (image1, image2, image3, image4) = (fetchImage1, fetchImage2, fetchImage3, fetchImage4)
+//
+//                        self.images.append(contentsOf: [image1, image2, image3, image4])
+//
+//                    } catch {
+//
+//                    }
+//                }
+                
+                ///CÁCH 3: Dùng async let là tối ưu nhất. This is best way to fetchImage from internet
+                Task {
+                    async let fetchImage1 = fetchImage()
+                    async let fetchImage2 = fetchImage()
+                    async let fetchImage3 = fetchImage()
+                    async let fetchImage4 = fetchImage()
+
+                    let (image1, image2, image3, image4) = await (try fetchImage1, try fetchImage2, try fetchImage3, try fetchImage4)
+
+                    self.images.append(contentsOf: [image1, image2, image3, image4])
+                }
+                ///But if we want to fetch a lot of items (ex: 50 items) the we cant use this code because it long and we have another way to do it... Looking for that way with Task Group.
             }
         }
     }
