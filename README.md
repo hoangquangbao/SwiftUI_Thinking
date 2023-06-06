@@ -23,3 +23,8 @@
 #### [19. Unit Test with Async func](https://github.com/hoangquangbao/SwiftUI_Thinking/tree/testing_async_func)
 #### [20. Concurrency do-catch, try, throws](https://github.com/hoangquangbao/SwiftUI_Thinking/tree/concurrency)
 #### [20. Download images with @escaping_Closure, Combine and Async/Await](https://github.com/hoangquangbao/SwiftUI_Thinking/tree/concurrency)
+#### [21. How to use Async/Await keyword](https://github.com/hoangquangbao/SwiftUI_Thinking/tree/concurrency)
+#### [22. How to use Task and .task](https://github.com/hoangquangbao/SwiftUI_Thinking/tree/concurrency)
+#### [23. How to use Async let](https://github.com/hoangquangbao/SwiftUI_Thinking/tree/concurrency)
+#### [24. How to use Async Let to perform concurrent methods in Swift](https://github.com/hoangquangbao/SwiftUI_Thinking/tree/concurrency)
+#### [25. How to use TaskGroup to perform concurrent Tasks in Swift](https://github.com/hoangquangbao/SwiftUI_Thinking/tree/concurrency)
