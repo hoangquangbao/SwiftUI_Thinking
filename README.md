@@ -7,6 +7,9 @@ This repository had funcs to download images from internet as "Download with @es
 ### **3. Async**
 - Use async keyword to mark it is async function.
 - Use MainActor to changes from background threads to main thread.
+### **4. Async_Let**
+- This help download image with the same time.
+- But you need repeat code download for each download.
 
 <details>
 <summary>Full Code</summary>
