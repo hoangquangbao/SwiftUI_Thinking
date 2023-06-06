@@ -9,10 +9,8 @@ import SwiftUI
 
 class TaskGroupDataManage {
     
-    func fetchImage(urlString: String?) async throws -> UIImage {
-        
-        guard let urlString = urlString,
-              let url = URL(string: urlString) else {
+    func fetchImage(urlString: String) async throws -> UIImage {
+        guard let url = URL(string: urlString) else {
             throw URLError(.badURL)
         }
         
@@ -27,25 +25,29 @@ class TaskGroupDataManage {
             throw error
         }
     }
+    
+    func fetchingImageWithAsyncLet() async throws -> [UIImage] {
+        
+        async let fetchImage1 = fetchImage(urlString: "https://picsum.photos/300")
+        async let fetchImage2 = fetchImage(urlString: "https://picsum.photos/300")
+        async let fetchImage3 = fetchImage(urlString: "https://picsum.photos/300")
+        async let fetchImage4 = fetchImage(urlString: "https://picsum.photos/300")
+
+        let (image1, image2, image3, image4) = await (try fetchImage1, try fetchImage2, try fetchImage3, try fetchImage4)
+        
+        return Array([image1, image2, image3, image4])
+    }
 }
 
 class TaskGroupViewModel: ObservableObject {
     
     @Published var images: [UIImage] = []
-    
-    let url = "https://picsum.photos/300"
-    
     var dataManager = TaskGroupDataManage()
     
-    init() {
-        Task {
-            do {
-                let image = try await dataManager.fetchImage(urlString: url)
-                await MainActor.run {
-                    self.images.append(image)
-                }
-            } catch {
-                
+    func getImage() async throws {
+        if let images = try? await dataManager.fetchingImageWithAsyncLet() {
+            await MainActor.run {
+                self.images.append(contentsOf: images)
             }
         }
     }
@@ -69,6 +71,9 @@ struct TaskGroupView: View {
                 }
             }
             .navigationTitle("Task Group")
+            .task {
+                try? await vm.getImage()
+            }
         }
     }
 }
