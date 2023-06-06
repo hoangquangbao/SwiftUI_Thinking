@@ -15,6 +15,7 @@
 		06C1CCD12A288ED3004D42F4 /* DownloadImageAsync.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06C1CCD02A288ED3004D42F4 /* DownloadImageAsync.swift */; };
 		06D8F15E2A2DCFC7003DB9BE /* TaskBootcamp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06D8F15D2A2DCFC7003DB9BE /* TaskBootcamp.swift */; };
 		06EA29D62A2ECE29008FD899 /* AsynLetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06EA29D52A2ECE29008FD899 /* AsynLetView.swift */; };
+		06EA29D82A2EE329008FD899 /* TaskGroupView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06EA29D72A2EE329008FD899 /* TaskGroupView.swift */; };
 		06F7F4AF2A29CAAD00CD60E5 /* AsyncAwaitBootcamp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06F7F4AE2A29CAAD00CD60E5 /* AsyncAwaitBootcamp.swift */; };
 /* End PBXBuildFile section */
 
@@ -28,6 +29,7 @@
 		06C1CCD02A288ED3004D42F4 /* DownloadImageAsync.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DownloadImageAsync.swift; sourceTree = "<group>"; };
 		06D8F15D2A2DCFC7003DB9BE /* TaskBootcamp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskBootcamp.swift; sourceTree = "<group>"; };
 		06EA29D52A2ECE29008FD899 /* AsynLetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AsynLetView.swift; sourceTree = "<group>"; };
+		06EA29D72A2EE329008FD899 /* TaskGroupView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskGroupView.swift; sourceTree = "<group>"; };
 		06F7F4AE2A29CAAD00CD60E5 /* AsyncAwaitBootcamp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AsyncAwaitBootcamp.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -70,6 +72,7 @@
 				06F7F4AE2A29CAAD00CD60E5 /* AsyncAwaitBootcamp.swift */,
 				06D8F15D2A2DCFC7003DB9BE /* TaskBootcamp.swift */,
 				06EA29D52A2ECE29008FD899 /* AsynLetView.swift */,
+				06EA29D72A2EE329008FD899 /* TaskGroupView.swift */,
 			);
 			path = SwiftUI_Thinking;
 			sourceTree = "<group>";
@@ -153,6 +156,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				06EA29D62A2ECE29008FD899 /* AsynLetView.swift in Sources */,
+				06EA29D82A2EE329008FD899 /* TaskGroupView.swift in Sources */,
 				06C1CCD12A288ED3004D42F4 /* DownloadImageAsync.swift in Sources */,
 				06C1CCCF2A287777004D42F4 /* DoCatchTryThrowsBootcamp.swift in Sources */,
 				06A9ED7529335C980060FB24 /* ContentView.swift in Sources */,
