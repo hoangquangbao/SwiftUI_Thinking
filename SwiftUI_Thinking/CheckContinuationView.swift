@@ -9,12 +9,29 @@ import SwiftUI
 
 class CheckContinuationNetworkManager {
         
-    func fetchImage(url: URL) async throws -> Data {
+    /// Download images with Async/Await
+    func fetchImageWithAsyncAwait(url: URL) async throws -> Data {
         do {
             let (data, _) = try await URLSession.shared.data(from: url)
             return data
         } catch {
             throw URLError(.badURL)
+        }
+    }
+    
+    /// Download images with Continuations
+    func fetchImageWithContinuations(url: URL) async throws -> Data {
+        return await withCheckedContinuation { continuation in
+            URLSession.shared.dataTask(with: url) { data, response, error in
+                if let data = data {
+                    continuation.resume(returning: data)
+                } else if let error = error {
+                    continuation.resume(throwing: error as! Never)
+                } else {
+                    continuation.resume(throwing: URLError(.badURL) as! Never)
+                }
+            }
+            .resume()
         }
     }
 }
@@ -30,7 +47,8 @@ class CheckContinuationViewModel: ObservableObject {
         guard let url = URL(string: urlString) else { return }
         
         do {
-            let data = try await networkManager.fetchImage(url: url)
+//            let data = try await networkManager.fetchImageWithAsyncAwait(url: url)
+            let data = try await networkManager.fetchImageWithContinuations(url: url)
             if let image = UIImage(data: data) {
                 await MainActor.run {
                     self.image = image
