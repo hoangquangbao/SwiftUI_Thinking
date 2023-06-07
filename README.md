@@ -157,7 +157,7 @@ struct DownloadImageAsync_Previews: PreviewProvider {
 <summary>DEMO CODE - Async/Await</summary>
 
 ```
-    //
+//
 //  AsyncAwaitBootcamp.swift
 //  SwiftUI_Thinking
 //
@@ -419,7 +419,7 @@ struct TaskBootcamp_Previews: PreviewProvider {
 <summary>DEMO CODE - Async_Let</summary>
 
 ```
-    //
+//
 //  AsynLetView.swift
 //  SwiftUI_Thinking
 //
@@ -522,7 +522,7 @@ struct AsynLetView_Previews: PreviewProvider {
 }
 
 ```
-<details>  
+</details>  
  
 ### **5. Task_Group**
 <details>
