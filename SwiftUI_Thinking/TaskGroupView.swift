@@ -26,6 +26,7 @@ class TaskGroupDataManage {
         }
     }
     
+    /// This func have speed download the same TaskGroup but it is need to more code.
     func fetchingImageWithAsyncLet() async throws -> [UIImage] {
         
         async let fetchImage1 = fetchImage(urlString: "https://picsum.photos/300")
@@ -38,6 +39,7 @@ class TaskGroupDataManage {
         return Array([image1, image2, image3, image4])
     }
     
+    ///This func is good way to download data from internet and it is sure short code.
     func fetchingImageWithTaskGroup() async throws -> [UIImage] {
         
         let urlStrings: [String] = [
