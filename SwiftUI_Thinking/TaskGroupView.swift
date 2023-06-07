@@ -41,12 +41,10 @@ class TaskGroupDataManage {
     func fetchingImageWithTaskGroup() async throws -> [UIImage] {
         
         let urlStrings: [String] = [
-            "https://picsum.photos/30",
-            "https://picsum.photos/30",
-            "https://picsum.photos/30",
-            "https://picsum.photos/30",
-            "https://picsum.photos/30",
-            "https://picsum.photos/30"
+            "https://picsum.photos/300",
+            "https://picsum.photos/300",
+            "https://picsum.photos/300",
+            "https://picsum.photos/300"
         ]
         
         return try await withThrowingTaskGroup(of: UIImage?.self) { group in
@@ -58,7 +56,7 @@ class TaskGroupDataManage {
             }
             
             for try await image in group {
-                if image = image {
+                if let image = image {
                     images.append(image)
                 }
             }
