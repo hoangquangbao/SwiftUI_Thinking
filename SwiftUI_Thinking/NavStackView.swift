@@ -12,20 +12,40 @@ struct NavStackView: View {
         
         ///NavigationView alway init all of screen before it is to use
         ///That not good for performance of our App
-        NavigationView {
-                ScrollView(showsIndicators: false) {
-                    VStack(spacing: 40) {
-                        ForEach(1...10, id: \.self) { i in
-                            
-                            NavigationLink {
-                                MySecondScreen(i: i)
-                            } label: {
-                                Text("Click Me 🤭")
-                            }
+//        NavigationView {
+//            ScrollView(showsIndicators: false) {
+//                VStack(spacing: 40) {
+//                    ForEach(1...10, id: \.self) { i in
+//                        NavigationLink {
+//                            MySecondScreen(i: i)
+//                        } label: {
+//                            Text("Click Me 🤭")
+//                        }
+//                    }
+//                }
+//            }
+//            .navigationTitle("Nav Stack")
+//            .navigationDestination(for: Int.self) { i in
+//                MySecondScreen(i: i)
+//            }
+//        }
+        
+        ///NavigationStack only init when it use that mean it is Lazy
+        ///Should use NavigationStack rather than NavigationView
+        NavigationStack {
+            ScrollView(showsIndicators: false) {
+                VStack(spacing: 40) {
+                    ForEach(1...10, id: \.self) { i in
+                        NavigationLink(value: i) {
+                            Text("Click Me 🤭")
                         }
                     }
                 }
+            }
             .navigationTitle("Nav Stack")
+            .navigationDestination(for: Int.self) { i in
+                MySecondScreen(i: i)
+            }
         }
     }
 }
