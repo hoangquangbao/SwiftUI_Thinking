@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		06A6F8222A303F1900532F8A /* CheckContinuationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06A6F8212A303F1900532F8A /* CheckContinuationView.swift */; };
 		06A9ED7329335C980060FB24 /* SwiftUI_ThinkingApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06A9ED7229335C980060FB24 /* SwiftUI_ThinkingApp.swift */; };
 		06A9ED7529335C980060FB24 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06A9ED7429335C980060FB24 /* ContentView.swift */; };
 		06A9ED7729335C9A0060FB24 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 06A9ED7629335C9A0060FB24 /* Assets.xcassets */; };
@@ -20,6 +21,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		06A6F8212A303F1900532F8A /* CheckContinuationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckContinuationView.swift; sourceTree = "<group>"; };
 		06A9ED6F29335C980060FB24 /* SwiftUI_Thinking.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SwiftUI_Thinking.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		06A9ED7229335C980060FB24 /* SwiftUI_ThinkingApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftUI_ThinkingApp.swift; sourceTree = "<group>"; };
 		06A9ED7429335C980060FB24 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -73,6 +75,7 @@
 				06D8F15D2A2DCFC7003DB9BE /* TaskBootcamp.swift */,
 				06EA29D52A2ECE29008FD899 /* AsynLetView.swift */,
 				06EA29D72A2EE329008FD899 /* TaskGroupView.swift */,
+				06A6F8212A303F1900532F8A /* CheckContinuationView.swift */,
 			);
 			path = SwiftUI_Thinking;
 			sourceTree = "<group>";
@@ -156,6 +159,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				06EA29D62A2ECE29008FD899 /* AsynLetView.swift in Sources */,
+				06A6F8222A303F1900532F8A /* CheckContinuationView.swift in Sources */,
 				06EA29D82A2EE329008FD899 /* TaskGroupView.swift in Sources */,
 				06C1CCD12A288ED3004D42F4 /* DownloadImageAsync.swift in Sources */,
 				06C1CCCF2A287777004D42F4 /* DoCatchTryThrowsBootcamp.swift in Sources */,
