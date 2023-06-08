@@ -34,6 +34,22 @@ class CheckContinuationNetworkManager {
             .resume()
         }
     }
+    
+    /// Download images from Database
+    /// @escaping Closure hard working with api
+    func fetchImageFromDatabase(complitionHandle: @escaping (_ image: UIImage) -> ()) {
+        DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
+            complitionHandle(UIImage(systemName: "sun.max.fill")!)
+        }
+    }
+    
+    func fetchImageFromDatabase() async -> UIImage {
+        return await withCheckedContinuation { continuation in
+            fetchImageFromDatabase { image in
+                continuation.resume(returning: image)
+            }
+        }
+    }
 }
 
 class CheckContinuationViewModel: ObservableObject {
@@ -47,7 +63,10 @@ class CheckContinuationViewModel: ObservableObject {
         guard let url = URL(string: urlString) else { return }
         
         do {
+            ///Fetching image with AsyncAwait
 //            let data = try await networkManager.fetchImageWithAsyncAwait(url: url)
+            
+            ///Fetching image with Continuations
             let data = try await networkManager.fetchImageWithContinuations(url: url)
             if let image = UIImage(data: data) {
                 await MainActor.run {
@@ -57,6 +76,16 @@ class CheckContinuationViewModel: ObservableObject {
         } catch {
             print(error)
         }
+    }
+    
+    func getSunImagesWithEscapingClosure() {
+        networkManager.fetchImageFromDatabase { [weak self] image in
+            self?.image = image
+        }
+    }
+    
+    func getSunImagesWithAsyncAwait() async {
+        self.image = await networkManager.fetchImageFromDatabase()
     }
 }
 
@@ -74,7 +103,9 @@ struct CheckContinuationView: View {
             }
         }
         .task {
-            await vm.getImages()
+//            await vm.getImages()
+//            vm.getSunImagesWithEscapingClosure()
+            await vm.getSunImagesWithAsyncAwait()
         }
     }
 }
