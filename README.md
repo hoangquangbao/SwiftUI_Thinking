@@ -30,4 +30,4 @@
 #### [26. [Concurrency] How to use TaskGroup to perform concurrent Tasks in Swift](https://github.com/hoangquangbao/SwiftUI_Thinking/tree/concurrency)
 #### [27. [Concurrency] How to use Continuations in Swift](https://github.com/hoangquangbao/SwiftUI_Thinking/tree/concurrency)
 #### [28. [Concurrency] How to use Sendable Protocol in Swift](https://github.com/hoangquangbao/SwiftUI_Thinking/tree/concurrency)
-#### [29. How to use Async_Publisher in Swift](https://github.com/hoangquangbao/SwiftUI_Thinking/tree/concurrency)
+#### [29. [Concurrency] How to use Async_Publisher in Swift](https://github.com/hoangquangbao/SwiftUI_Thinking/tree/concurrency)
