@@ -36,12 +36,21 @@ class AsyncPublisherViewModel: ObservableObject {
     }
     
     func addSubscriber() {
-        dataManager.$myData
-            .receive(on: DispatchQueue.main)
-            .sink { returnValue in
-                self.dataArray = returnValue
+//        dataManager.$myData
+//            .receive(on: DispatchQueue.main)
+//            .sink { returnValue in
+//                self.dataArray = returnValue
+//            }
+//            .store(in: &cancellable)
+        
+        
+        Task {
+            for await value in dataManager.$myData.values {
+                await MainActor.run {
+                    self.dataArray = value
+                }
             }
-            .store(in: &cancellable)
+        }
     }
     
     func start() async {
