@@ -56,7 +56,7 @@ class AsyncPublisherViewModel: ObservableObject {
 //        }
         
         ///Ta có demo nhỏ như bên dưới
-        ///The "TWO" value never to print cause FOR loop alway listening Publisher and nerver stop because it don't know when give a value from Publisher
+        ///The "TWO" value never to print cause FOR loop alway listening for next value because it don't know when give a value from Publisher
         ///If you want to print TWO, you need use a "break" command line to mark exit loop
         
         Task {
