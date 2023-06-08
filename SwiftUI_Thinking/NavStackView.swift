@@ -4,7 +4,7 @@
 //
 //  Created by Quang Bao on 08/06/2023.
 //
-
+// Have a Navigation Path that not define in this file, you can research it on the internet
 import SwiftUI
 
 struct NavStackView: View {
