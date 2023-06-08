@@ -36,6 +36,7 @@ class AsyncPublisherViewModel: ObservableObject {
     }
     
     func addSubscriber() {
+        ///Get data using Combine
 //        dataManager.$myData
 //            .receive(on: DispatchQueue.main)
 //            .sink { returnValue in
@@ -44,11 +45,34 @@ class AsyncPublisherViewModel: ObservableObject {
 //            .store(in: &cancellable)
         
         
+        ///Convert @Publisher to Async/Await
+        ///Get data using Async/Await
+//        Task {
+//            for await value in dataManager.$myData.values {
+//                await MainActor.run {
+//                    self.dataArray = value
+//                }
+//            }
+//        }
+        
+        ///Ta có demo nhỏ như bên dưới
+        ///The "TWO" value never to print cause FOR loop alway listening Publisher and nerver stop because it don't know when give a value from Publisher
+        ///If you want to print TWO, you need use a "break" command line to mark exit loop
+        
         Task {
+            
+            await MainActor.run {
+                self.dataArray.append("ONE")
+            }
+            
             for await value in dataManager.$myData.values {
                 await MainActor.run {
                     self.dataArray = value
                 }
+            }
+            
+            await MainActor.run {
+                self.dataArray.append("TWO")
             }
         }
     }
