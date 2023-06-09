@@ -18,6 +18,7 @@
 - ###### [Download JSON with URLSession and @escaping_Closures](https://github.com/hoangquangbao/SwiftUI_Thinking/tree/download_JSON_with_urlsession_and_escaping_closures)
 - ###### [NavigationStack](https://github.com/hoangquangbao/SwiftUI_Thinking/tree/navigationStack)
 - ###### [Toolbar](https://github.com/hoangquangbao/SwiftUI_Thinking/tree/toolbar)
+- ###### [Sheet (custom size)](https://github.com/hoangquangbao/SwiftUI_Thinking/tree/sheet)
 
 #### Unit Test 🩺
 - ###### [Unit Testing](https://github.com/hoangquangbao/SwiftUI_Thinking/tree/unit_testing)
