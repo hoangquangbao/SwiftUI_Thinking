@@ -1,9 +1,11 @@
-# NavigationStack
-- The powerful tool for managing navigation and transitions in your iOS app development.
-- It good more than NavigationView.
-- Only available on iOS 16 or later.
+# NavigationStack 📚
+👉 The powerful tool for managing navigation and transitions in your iOS app development.
 
-#### ***Comparing NavigationView and NavigationStack***
+👉 It good more than NavigationView.
+
+👉 Only available on iOS 16 or later.
+
+#### Comparing NavigationView and NavigationStack
 
 <details>
 <summary>Demo code</summary>
