@@ -8,8 +8,11 @@
 import SwiftUI
 
 struct ToolbarView: View {
+    
+    @State var paths: [String] = []
+    
     var body: some View {
-        NavigationStack {
+        NavigationStack(path: $paths) {
             ScrollView(showsIndicators: false) {
                 ForEach(1..<10) { _ in
                     RoundedRectangle(cornerRadius: 10)
@@ -32,6 +35,18 @@ struct ToolbarView: View {
 //            .toolbar(.hidden, for: .navigationBar)
 //            .toolbarBackground(.hidden, for: .navigationBar)
 //            .toolbarColorScheme(.dark, for: .navigationBar)
+            .navigationBarTitleDisplayMode(.inline)
+            .navigationDestination(for: String.self, destination: { value in
+                Text("This is screen of \(value)")
+            })
+            .toolbarTitleMenu {
+                Button("Button 1") {
+                    paths.append("button 1")
+                }
+                Button("Button 2") {
+                    paths.append("button 2")
+                }
+            }
         }
     }
 }
