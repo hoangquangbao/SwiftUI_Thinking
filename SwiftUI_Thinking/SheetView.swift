@@ -23,6 +23,9 @@ struct SheetView: View {
                 .background(.orange)
 //                .presentationDragIndicator(.hidden)
 //                .interactiveDismissDisabled(true)
+//                .presentationDetents([.medium, .large])
+//                .presentationDetents([.height(100), .medium, .large])
+                .presentationDetents([.fraction(0.23456), .medium, .large])
         }
     }
 }
