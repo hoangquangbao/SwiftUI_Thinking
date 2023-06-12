@@ -19,6 +19,7 @@
 - ###### [NavigationStack](https://github.com/hoangquangbao/SwiftUI_Thinking/tree/navigationStack)
 - ###### [Toolbar](https://github.com/hoangquangbao/SwiftUI_Thinking/tree/toolbar)
 - ###### [Sheet (custom size)](https://github.com/hoangquangbao/SwiftUI_Thinking/tree/sheet)
+- ###### [SafeAreaInsets](https://github.com/hoangquangbao/SwiftUI_Thinking/tree/safe_area_insets)
 
 #### Unit Test 🩺
 - ###### [Unit Testing](https://github.com/hoangquangbao/SwiftUI_Thinking/tree/unit_testing)
