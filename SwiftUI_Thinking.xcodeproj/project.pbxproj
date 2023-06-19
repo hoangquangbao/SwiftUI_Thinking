@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0612D5A92A3FFD6500A7216F /* RefreshableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0612D5A82A3FFD6500A7216F /* RefreshableView.swift */; };
 		06A9ED7329335C980060FB24 /* SwiftUI_ThinkingApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06A9ED7229335C980060FB24 /* SwiftUI_ThinkingApp.swift */; };
 		06A9ED7529335C980060FB24 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06A9ED7429335C980060FB24 /* ContentView.swift */; };
 		06A9ED7729335C9A0060FB24 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 06A9ED7629335C9A0060FB24 /* Assets.xcassets */; };
@@ -14,6 +15,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		0612D5A82A3FFD6500A7216F /* RefreshableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RefreshableView.swift; sourceTree = "<group>"; };
 		06A9ED6F29335C980060FB24 /* SwiftUI_Thinking.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SwiftUI_Thinking.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		06A9ED7229335C980060FB24 /* SwiftUI_ThinkingApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftUI_ThinkingApp.swift; sourceTree = "<group>"; };
 		06A9ED7429335C980060FB24 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -53,6 +55,7 @@
 			children = (
 				06A9ED7229335C980060FB24 /* SwiftUI_ThinkingApp.swift */,
 				06A9ED7429335C980060FB24 /* ContentView.swift */,
+				0612D5A82A3FFD6500A7216F /* RefreshableView.swift */,
 				06A9ED7629335C9A0060FB24 /* Assets.xcassets */,
 				06A9ED7829335C9A0060FB24 /* Preview Content */,
 			);
@@ -139,6 +142,7 @@
 			files = (
 				06A9ED7529335C980060FB24 /* ContentView.swift in Sources */,
 				06A9ED7329335C980060FB24 /* SwiftUI_ThinkingApp.swift in Sources */,
+				0612D5A92A3FFD6500A7216F /* RefreshableView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

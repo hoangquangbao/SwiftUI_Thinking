@@ -7,15 +7,42 @@
 
 import SwiftUI
 
+//struct ContentView: View {
+//    var body: some View {
+//        VStack {
+//            Image(systemName: "globe")
+//                .imageScale(.large)
+//                .foregroundColor(.accentColor)
+//            Text("Hello, world!")
+//        }
+//        .padding()
+//    }
+//}
+
 struct ContentView: View {
+    @State private var isMenuVisible = false
+    
     var body: some View {
         VStack {
-            Image(systemName: "globe")
-                .imageScale(.large)
-                .foregroundColor(.accentColor)
-            Text("Hello, world!")
+            Menu("Options") {
+                Button("Option 1") {
+                }
+                Button("Option 2") {
+                }
+            }
+            .modifier(
+                MenuWidthModifier(width: 50)
+            )
         }
-        .padding()
+    }
+}
+
+struct MenuWidthModifier: ViewModifier {
+    let width: CGFloat
+    
+    func body(content: Content) -> some View {
+        content
+            .frame(width: width)
     }
 }
 
@@ -24,3 +51,4 @@ struct ContentView_Previews: PreviewProvider {
         ContentView()
     }
 }
+
