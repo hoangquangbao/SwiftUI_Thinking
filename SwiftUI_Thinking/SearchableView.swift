@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import Combine
 
 enum City: String {
     case american
@@ -40,14 +41,50 @@ class RestaurantManager {
 @MainActor
 class SearchableViewModel: ObservableObject {
     
-    @Published private(set) var foods: [Restaurant] = []
-    var searchFood = RestaurantManager()
+    @Published private(set) var allRestaurants: [Restaurant] = []
+    @Published private(set) var filterRestaurants: [Restaurant] = []
+    @Published var searchText: String = ""
     
-    func fetchFood() async {
+    let restaurantManager = RestaurantManager()
+    private var cancellable = Set<AnyCancellable>()
+    var isSearching : Bool {
+        !searchText.isEmpty
+    }
+    
+    init() {
+        addSubscriber()
+    }
+    
+    func loadRestaurants() async {
         do {
-            foods = try await searchFood.fetchAllRestaurant()
+            allRestaurants = try await restaurantManager.fetchAllRestaurant()
         } catch {
             print(error)
+        }
+    }
+    
+    func addSubscriber() {
+        $searchText
+            .debounce(for: 0.3, scheduler: DispatchQueue.main)
+            .sink { searchText in
+                self.filterRestaurants(searchText: searchText)
+            }
+            .store(in: &cancellable)
+    }
+    
+    func filterRestaurants(searchText: String) {
+        guard !searchText.isEmpty else {
+            filterRestaurants = []
+            return
+        }
+        
+        let search = searchText.lowercased()
+        
+        filterRestaurants = allRestaurants.filter { restaurant in
+            let titleContainsSearch = restaurant.title.lowercased().contains(search)
+            let cityContainsSearch = restaurant.city.rawValue.lowercased().contains(search)
+            
+            return titleContainsSearch || cityContainsSearch
         }
     }
 }
@@ -60,14 +97,15 @@ struct SearchableView: View {
         NavigationStack {
             ScrollView {
                 VStack(alignment: .leading, spacing: 20) {
-                    ForEach(vm.foods) { restaurant in
+                    ForEach(vm.isSearching ? vm.filterRestaurants : vm.allRestaurants) { restaurant in
                         restaurantRow(restaurant: restaurant)
                     }
                 }
                 .padding()
             }
+            .searchable(text: $vm.searchText, placement: .automatic, prompt: "Search Restaurant..")
             .task {
-                await vm.fetchFood()
+                await vm.loadRestaurants()
             }
             .navigationTitle("Restaurant..")
         }
