@@ -1,1 +1,1 @@
-# SwiftUI_Thinking
+# CoreData FetchRequest
