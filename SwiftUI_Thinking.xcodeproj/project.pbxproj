@@ -13,6 +13,7 @@
 		06A9ED7529335C980060FB24 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06A9ED7429335C980060FB24 /* ContentView.swift */; };
 		06A9ED7729335C9A0060FB24 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 06A9ED7629335C9A0060FB24 /* Assets.xcassets */; };
 		06A9ED7A29335C9A0060FB24 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 06A9ED7929335C9A0060FB24 /* Preview Assets.xcassets */; };
+		29C8163A2C1EFBC000350A0A /* MatchedGeometryEffectBootcamp3.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29C816392C1EFBC000350A0A /* MatchedGeometryEffectBootcamp3.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -23,6 +24,7 @@
 		06A9ED7429335C980060FB24 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		06A9ED7629335C9A0060FB24 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		06A9ED7929335C9A0060FB24 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		29C816392C1EFBC000350A0A /* MatchedGeometryEffectBootcamp3.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MatchedGeometryEffectBootcamp3.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -58,6 +60,7 @@
 				06A9ED7229335C980060FB24 /* SwiftUI_ThinkingApp.swift */,
 				068CB2552A08D50C003E4858 /* MatchedGeometryEffectBootcamp.swift */,
 				068CB2572A08D6B7003E4858 /* MatchedGeometryEffectBootcamp2.swift */,
+				29C816392C1EFBC000350A0A /* MatchedGeometryEffectBootcamp3.swift */,
 				06A9ED7429335C980060FB24 /* ContentView.swift */,
 				06A9ED7629335C9A0060FB24 /* Assets.xcassets */,
 				06A9ED7829335C9A0060FB24 /* Preview Content */,
@@ -143,6 +146,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				29C8163A2C1EFBC000350A0A /* MatchedGeometryEffectBootcamp3.swift in Sources */,
 				068CB2562A08D50C003E4858 /* MatchedGeometryEffectBootcamp.swift in Sources */,
 				068CB2582A08D6B7003E4858 /* MatchedGeometryEffectBootcamp2.swift in Sources */,
 				06A9ED7529335C980060FB24 /* ContentView.swift in Sources */,
