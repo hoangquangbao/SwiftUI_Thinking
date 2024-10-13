@@ -21,6 +21,8 @@
 - ###### [Sheet (custom size)](https://github.com/hoangquangbao/SwiftUI_Thinking/tree/sheet)
 - ###### [SafeAreaInsets](https://github.com/hoangquangbao/SwiftUI_Thinking/tree/safe_area_insets)
 - ###### [Searchable](https://github.com/hoangquangbao/SwiftUI_Thinking/tree/searchable)
+- ###### [NavigationSplitView](https://github.com/hoangquangbao/SwiftUI_Thinking/tree/navigationSplitView)
+- ###### [Popove](https://github.com/hoangquangbao/SwiftUI_Thinking/tree/popover)
 
 #### Unit Test 🩺
 - ###### [Unit Testing](https://github.com/hoangquangbao/SwiftUI_Thinking/tree/unit_testing)
