@@ -23,6 +23,7 @@
 - ###### [Searchable](https://github.com/hoangquangbao/SwiftUI_Thinking/tree/searchable)
 - ###### [NavigationSplitView](https://github.com/hoangquangbao/SwiftUI_Thinking/tree/navigationSplitView)
 - ###### [Popove](https://github.com/hoangquangbao/SwiftUI_Thinking/tree/popover)
+- ###### [Grid](https://github.com/hoangquangbao/SwiftUI_Thinking/tree/grid)
 
 #### Unit Test 🩺
 - ###### [Unit Testing](https://github.com/hoangquangbao/SwiftUI_Thinking/tree/unit_testing)
